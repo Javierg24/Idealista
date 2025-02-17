@@ -1,0 +1,115 @@
+// Variables
+$primary-color: #333;
+$secondary-color: #666;
+$link-color: #145BC7;
+$font-family: Arial,
+sans-serif;
+
+// Base styles
+
+.main-footer {
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  background-color: #f5f5f5;
+  color: $primary-color;
+  font-family: $font-family;
+  padding: 20px 0;
+
+
+
+  .icon-idealista-icon {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    transform-style: preserve-3d;
+  }
+
+  .imagen-idealista-icon {
+    img {
+      width: 100px;
+      height: 50px;
+    }
+  }
+
+  .content {
+    justify-content: center;
+    display: flex;
+
+    .footer-links-about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      justify-content: space-between;
+    }
+
+    .footer-links-about,
+    .footer-links-social {
+      h3 {
+        color: #6F6F6D;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin-bottom: 5px;
+
+          a {
+
+            color: $link-color;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-links-social {
+      margin-left: 5%;
+
+      .social-stores-links {
+        .imagen-app-store .imagen {
+          width: 120px;
+          height: 50px;
+        }
+
+        .social-links {
+          display: flex;
+          /* Alinea horizontalmente los elementos */
+          gap: 10px;
+          /* Espaciado entre las imágenes */
+
+          a {
+            display: flex;
+            align-items: center;
+            /* Centra verticalmente el contenido */
+            justify-content: center;
+
+            .imagen-red-social img {
+              width: 32px;
+              /* Establece el ancho de las imágenes */
+              height: 32px;
+              /* Establece la altura de las imágenes */
+              object-fit: contain;
+              /* Asegura que la imagen se ajuste sin deformarse */
+            }
+          }
+        }
+      }
+    }
+
+    .ide-copyright {
+      font-size: 14px;
+      color: $secondary-color;
+    }
+  }
+}
