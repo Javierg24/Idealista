@@ -1,0 +1,54 @@
+.navegacion{
+  margin-top: 4%;
+  margin-left: 5%;
+  margin-bottom:4%;
+  text-decoration: none;
+  color:#145BC7;
+  font: bold 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+}
+
+.provincias-container {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+
+
+  .map-container {
+    flex: 1;
+    margin-right: 2rem;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .provincias-list-container {
+    flex: 1;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+
+        a{
+          color:#145BC7;
+          font: normal 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #0056b3;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,132 @@
+// Variables
+$primary-color: #cfe500;
+$secondary-color: #ff007a;
+$text-color: #333;
+$background-color: #f8f8f8;
+$btn-background: #e50068;
+$btn-text-color: #fff;
+
+.container-imagen {
+  width: 100%;
+  position: relative;
+
+  .imagen img {
+    margin-left: 10%;
+    width: 80%;
+    height: auto;
+    display: flex;
+    z-index: -1;
+  }
+
+  .new-search-box {
+    z-index: 1;
+    width:60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(225, 245, 110, 0.96);
+    padding:3%;
+    border-radius: 3px;
+    text-align: center;
+
+    .new-search-box-title {
+      font-size: 1.2rem;
+      color: $text-color;
+      margin-bottom: 20px;
+    }
+
+    .new-search-box-subtitle {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+
+      form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .form-new-radio-button-wrapper {
+
+          .new-radio-button{
+            display: flex;
+            border: none;
+          }
+
+          label {
+            padding: 10px 10px;
+            border: 1px solid #CBCCC7;
+            background: white;
+            color:#4D4D4C;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s, color 0.3s;
+
+            &:hover,
+            &.active {
+              background: $btn-text-color;
+              color: $btn-background;
+              border-color: $btn-background;
+            }
+
+            &:checked {
+              background: $btn-text-color;
+              color: $btn-background;
+            }
+          }
+
+          input {
+            display: none;
+          }
+        }
+
+        .form-typology-wrapper {
+
+          select {
+            padding: 12px 10px;
+            font-size: 16px;
+            border: 1px solid #CBCCC7;
+          }
+        }
+
+        .form-item-block {
+
+          input {
+            padding: 12px;
+            width: 70%;
+            max-width: 300px;
+            font-size: 16px;
+            border: 1px solid #CBCCC7;
+          }
+        }
+
+        .btn {
+          padding: 12px 30px;
+          background: $btn-background;
+          color: $btn-text-color;
+          border: none;
+          border-radius: .125rem;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.3s;
+
+          &:hover {
+            background: darken($btn-background, 10%);
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+}
+
 
 .home-app{
     margin-top: 5%;
@@ -146,78 +275,4 @@
 
 }
 
-.links-block-home {
-  /* Ancho total y centrado del contenedor principal */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-
-  .content {
-    /* Define un ancho máximo para centrar el contenido
-       y un display flex para alinear los 3 nav horizontalmente */
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* distribuye el espacio entre columnas */
-    gap: 2rem; /* espacio horizontal entre cada nav */
-
-    nav {
-      /* Cada nav se comporta como una columna */
-      flex: 1;
-
-      /* Título de cada columna */
-      h3 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        font: bold 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
-      }
-
-
-      /* Listas de enlaces */
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-        li {
-          margin-bottom: 0.3rem;
-
-          span{
-            font-size: 1rem;
-            color: #6F6F6D;
-            margin-right: 0.5rem;
-            display: inline-block;
-          }
-
-          a {
-            color: #145BC7;
-            text-decoration: none;
-            font-size: 1dvi;
-            font: normal 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
-
-            &:hover {
-              text-decoration: underline;
-              color: #0056b3;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-/* Ejemplo de responsividad para pantallas pequeñas */
-@media (max-width: 768px) {
-  .links-block-home {
-    margin: 1rem 0;
-  }
-
-  .links-block-home .content {
-    flex-direction: column; /* Pasa a columnas verticales */
-    align-items: flex-start; /* Alinea a la izquierda o usa center si prefieres */
-    gap: 1rem;
-  }
-}
 
