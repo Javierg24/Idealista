@@ -15,7 +15,7 @@ export interface Resenia {
   providedIn: 'root',
 })
 export class ReseniasService {
-  private apiUrl = 'http://localhost/idealista/controller/ReseniasController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/ReseniasController.php';
 
   constructor(private http: HttpClient) {}
 

@@ -23,7 +23,7 @@ export interface Oficina {
   providedIn: 'root',
 })
 export class OficinasService {
-  private apiUrl = 'http://localhost/idealista/controller/OficinasController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/OficinasController.php';
 
   constructor(private http: HttpClient) {}
 

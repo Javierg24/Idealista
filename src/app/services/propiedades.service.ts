@@ -20,7 +20,7 @@ export interface Propiedad {
   providedIn: 'root',
 })
 export class PropiedadesService {
-  private apiUrl = 'http://localhost/idealista/controller/PropiedadesController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/PropiedadesController.php';
 
   constructor(private http: HttpClient) {}
 
