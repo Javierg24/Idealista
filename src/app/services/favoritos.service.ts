@@ -11,7 +11,7 @@ export interface Favorito {
   providedIn: 'root',
 })
 export class FavoritosService {
-  private apiUrl = 'http://localhost/idealista/controller/FavoritosController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/FavoritosController.php';
 
   constructor(private http: HttpClient) {}
 

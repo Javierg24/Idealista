@@ -23,7 +23,7 @@ export interface Piso {
   providedIn: 'root',
 })
 export class PisosService {
-  private apiUrl = 'http://localhost/idealista/controller/PisosController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/PisosController.php';
 
   constructor(private http: HttpClient) {}
 

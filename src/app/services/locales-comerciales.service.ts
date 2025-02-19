@@ -22,7 +22,7 @@ export interface LocalComercial {
   providedIn: 'root',
 })
 export class LocalesComercialesService {
-  private apiUrl = 'http://localhost/idealista/controller/LocalesController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/LocalesController.php';
 
   constructor(private http: HttpClient) {}
 

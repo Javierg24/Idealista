@@ -13,7 +13,7 @@ export interface Imagen {
   providedIn: 'root',
 })
 export class ImagenesService {
-  private apiUrl = 'http://localhost/idealista/controller/ImagenesController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/ImagenesController.php';
 
   constructor(private http: HttpClient) {}
 

@@ -14,7 +14,7 @@ export interface Mensaje {
   providedIn: 'root',
 })
 export class MensajesService {
-  private apiUrl = 'http://localhost/idealista/controller/MensajesController.php';
+  private apiUrl = 'http://localhost/idealista/PHP/controller/MensajesController.php';
 
   constructor(private http: HttpClient) {}
 
