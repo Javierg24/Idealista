@@ -11,6 +11,7 @@ import { PropiedadesComponent } from './propiedades/propiedades.component';
 import { PropiedadComponent } from './propiedad/propiedad.component';
 import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { HeaderYellowComponent } from './header-yellow/header-yellow.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
     PropiedadesComponent,
     PropiedadComponent,
     CardInmuebleComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    HeaderYellowComponent
 
   ],
   imports: [

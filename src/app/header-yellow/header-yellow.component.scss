@@ -1,0 +1,54 @@
+// Variables
+$primary-color: #cfe500;
+$secondary-color: #ff007a;
+$text-color: #333;
+$background-color: #f8f8f8;
+$btn-background: #e50068;
+$btn-text-color: #fff;
+
+.header {
+  background-color: #e1f56e;
+  .container-menu {
+    width: 70%;
+    margin-left: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Distribuye espacio entre logo y enlaces */
+    padding: 0 20px;
+    height: 60px;
+
+    .logo {
+      display: flex;
+      /* Asegura alineación interna si es necesario */
+      align-items: center;
+      cursor: pointer;
+      img {
+        height: 50px;
+      }
+    }
+
+    .enlaces {
+      cursor: pointer;
+      display: flex;
+      /* Asegura que los enlaces estén en línea */
+      align-items: center;
+      gap: 20px;
+      /* Espaciado uniforme entre enlaces */
+
+      .enlace {
+
+        padding: 1%;
+        color: $text-color;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+
+}

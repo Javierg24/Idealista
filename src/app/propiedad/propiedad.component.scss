@@ -1,38 +1,53 @@
-.propiedad-container {
 
+.navegacion{
+  margin-left: 5%;
+
+  text-decoration: none;
+  color:#145BC7;
+  font: bold 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+}
+
+
+.propiedad-container {
+  background-color: #f4f5f2;
 
   .detalle-inmueble {
     display: flex;
-    gap: 20px;
     max-width: 1200px;
     margin: auto;
     padding: 20px;
     background-color: #f4f5f2;
 
     .inmueble-container {
+      margin-left:5%;
+      width:50%;
+      margin-right: 5%;
       background-color: #ffffff;
-      
+
       .imagen {
         flex: 1;
-
+        margin-left:2%;
         img {
+
+          justify-content: center;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 8px;
         }
       }
 
-      .info {
+      .info-container {
+        margin-left:2%;
         flex: 1;
-        display: flex;
         flex-direction: column;
-        justify-content: space-between;
 
         h1 {
-          font-size: 1.8rem;
-          color: #145bc7;
           font-weight: bold;
+          font: bold 1.5em / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+        }
+
+        .ubicacion{
+          font: normal 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
         }
 
         .precio {

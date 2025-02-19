@@ -1,0 +1,47 @@
+@charset "UTF-8";
+.header {
+  background-color: #e1f56e;
+}
+
+.header .container-menu {
+  width: 70%;
+  margin-left: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Distribuye espacio entre logo y enlaces */
+  padding: 0 20px;
+  height: 60px;
+}
+
+.header .container-menu .logo {
+  display: flex;
+  /* Asegura alineación interna si es necesario */
+  align-items: center;
+  cursor: pointer;
+}
+
+.header .container-menu .logo img {
+  height: 50px;
+}
+
+.header .container-menu .enlaces {
+  cursor: pointer;
+  display: flex;
+  /* Asegura que los enlaces estén en línea */
+  align-items: center;
+  gap: 20px;
+  /* Espaciado uniforme entre enlaces */
+}
+
+.header .container-menu .enlaces .enlace {
+  padding: 1%;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.header .container-menu .enlaces .enlace:hover {
+  background-color: #cfe500;
+}
