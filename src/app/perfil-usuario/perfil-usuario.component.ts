@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil-usuario.component.scss']
 })
 export class PerfilUsuarioComponent {
-
-
   //de momento no tiene lógica
 }

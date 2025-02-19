@@ -24,7 +24,7 @@ export interface Casa {
   providedIn: 'root',
 })
 export class CasasService {
-  private apiUrl = 'http://localhost/idealista-api/controllers/casas.php';
+  private apiUrl = 'http://localhost/idealista/controller/CasasController.php';
 
   constructor(private http: HttpClient) {}
 
