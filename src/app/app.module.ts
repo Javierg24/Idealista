@@ -10,6 +10,7 @@ import { ProvinciaComponent } from './provincia/provincia.component';
 import { PropiedadesComponent } from './propiedades/propiedades.component';
 import { PropiedadComponent } from './propiedad/propiedad.component';
 import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
     PropiedadesComponent,
     PropiedadComponent,
     CardInmuebleComponent,
+    PerfilUsuarioComponent
 
   ],
   imports: [

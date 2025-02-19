@@ -4,6 +4,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ProvinciaComponent } from './provincia/provincia.component';
 import { PropiedadesComponent } from './propiedades/propiedades.component';
 import { PropiedadComponent } from './propiedad/propiedad.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'provincia', component: ProvinciaComponent },
   { path: 'propiedades', component: PropiedadesComponent },
-  { path: 'propiedad/:id', component: PropiedadComponent }
+  { path: 'propiedad/:id', component: PropiedadComponent },
+  { path: 'perfil', component: PerfilUsuarioComponent }
 ];
 
 @NgModule({
