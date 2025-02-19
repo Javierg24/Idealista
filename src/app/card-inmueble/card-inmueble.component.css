@@ -1,0 +1,50 @@
+.card-inmueble {
+  display: flex;
+  background: white;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px auto;
+  height: 200px;
+}
+
+.card-inmueble img {
+  width: 30%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-inmueble .info {
+  padding: 10px;
+  height: 160px;
+}
+
+.card-inmueble .info a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #145BC7;
+  margin-bottom: 5px;
+  font: bold 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+}
+
+.card-inmueble .info .precio {
+  color: #000000;
+  font-weight: bold;
+  font: bold 1.2rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+}
+
+.card-inmueble .info .btn-contactar {
+  background: #007bff;
+  color: white;
+  padding: 8px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card-inmueble .info .descripcion {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}

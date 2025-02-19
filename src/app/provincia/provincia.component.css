@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: row;
   margin: 1rem;
+  margin-left: 5%;
 }
 
 .provincias-container .map-container {
@@ -43,6 +44,7 @@
 }
 
 .provincias-container .provincias-list-container ul li a {
+  text-decoration: none;
   color: #145BC7;
   font: normal 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
 }
