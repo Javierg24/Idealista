@@ -1,0 +1,51 @@
+.card-inmueble {
+
+  display: flex;  // Distribuye la imagen y la info en dos columnas
+  background: white;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px auto; // Centrarlo en la página
+  height: 200px;
+
+  img {
+    width:30%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .info {
+    padding: 10px;
+    height: 160px;
+
+    a{
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #145BC7;
+      margin-bottom: 5px;
+      font: bold 1rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+    }
+
+    .precio {
+      color: #000000;
+      font-weight: bold;
+      font: bold 1.2rem / 1.5rem 'bernino-regular', Verdana, Arial, Geneva, sans-serif !important;
+    }
+
+    .btn-contactar {
+      background: #007bff;
+      color: white;
+      padding: 8px;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .descripcion{
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 5px;
+    }
+  }
+}

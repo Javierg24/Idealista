@@ -1,4 +1,46 @@
 <app-header></app-header>
 
+<div class="navegacion">
+  <a routerLink="/propiedades">Viviendas en localidad </a>
+</div>
 
+<div class="propiedad-container">
+
+  <div class="detalle-inmueble">
+    <!-- Imagen del inmueble -->
+
+    <div class="inmueble-container">
+      <div class="imagen-container">
+        <img [src]="inmueble.imagen" [alt]="inmueble.titulo">
+      </div>
+      <!-- Información del inmueble -->
+      <div class="info-container">
+        <h1>{{ inmueble.titulo }}</h1>
+        <p class="ubicacion">{{ inmueble.ubicacion }} - <a href="#">Ver
+            mapa</a></p>
+        <p class="precio">{{ inmueble.precio | currency:'EUR' }}</p>
+        <p class="detalles">{{ inmueble.metros }} m² | {{ inmueble.habitaciones
+          }}
+          hab | Planta {{ inmueble.planta }} {{ inmueble.ascensor ?
+          'con ascensor'
+          : 'sin ascensor' }}</p>
+
+        <button class="btn-guardar">Guardar favorito</button>
+        <button class="btn-descartar">Descartar</button>
+        <button class="btn-compartir">Compartir</button>
+
+        <h2>Comentario del anunciante</h2>
+        <p class="descripcion">{{ inmueble.descripcion }}</p>
+      </div>
+    </div>
+    <!-- Panel de contacto -->
+    <aside class="contacto-container">
+      <h3>Pregunta al anunciante</h3>
+      <textarea
+        placeholder="Hola, me interesa este piso y me gustaría hacer una visita."></textarea>
+      <button class="btn-contactar">Contactar por chat</button>
+      <p class="telefono">📞 Ver teléfono</p>
+    </aside>
+  </div>
+</div>
 <app-footer></app-footer>

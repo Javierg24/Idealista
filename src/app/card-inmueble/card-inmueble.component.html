@@ -1,10 +1,9 @@
 <div class="card-inmueble">
   <img [src]="datos.imagen" [alt]="datos.titulo">
   <div class="info">
-    <h2>{{ datos.titulo }}</h2>
-    <p><strong>Precio:</strong> {{ datos.precio | currency:'EUR' }}</p>
-    <p><strong>Habitaciones:</strong> {{ datos.habitaciones }}</p>
-    <p><strong>Metros cuadrados:</strong> {{ datos.metros }} m²</p>
-    <p><strong>Ubicación:</strong> {{ datos.ubicacion }}</p>
+    <a routerLink="/propiedad">{{ datos.titulo }}</a>
+    <p class="precio"><strong> {{ datos.precio | currency:'EUR' }}</strong></p>
+    <p>{{ datos.habitaciones }} hab {{ datos.metros }} m² Ubicación:{{ datos.ubicacion }}</p>
+    <p class="descripcion">{{datos.descripcion}}</p>
   </div>
 </div>

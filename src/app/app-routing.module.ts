@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'provincia', component: ProvinciaComponent },
   { path: 'propiedades', component: PropiedadesComponent },
-  { path: 'propiedad/:id', component: PropiedadComponent },
+  { path: 'propiedad', component: PropiedadComponent },
   { path: 'perfil', component: PerfilUsuarioComponent }
 ];
 

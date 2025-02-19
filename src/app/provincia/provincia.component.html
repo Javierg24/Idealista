@@ -6,14 +6,14 @@
 
   <div class="map-container">
     <h1>Mapa de {{provincia}}: anuncios de {{tipoPropiedad}} en venta</h1>
-    <img src="assets/mapa-sevilla.png" alt="Mapa de Sevilla" />
+    <img src="../../assets/img/sevilla.png" alt="Mapa de Sevilla" />
   </div>
 
   <div class="provincias-list-container">
     <h2>Localidades de {{ provincia }}</h2>
     <ul>
       <li *ngFor="let localidad of localidades">
-        <a >{{ localidad.nombre }}</a>
+        <a routerLink="/propiedades">{{ localidad.nombre }}</a>
       </li>
     </ul>
   </div>
