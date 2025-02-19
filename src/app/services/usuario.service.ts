@@ -14,7 +14,7 @@ export interface Usuario {
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost/idealista-api/controllers/usuarios.php';
+  private apiUrl = 'http://localhost/idealista/controller/UsuariosController.php';
 
   constructor(private http: HttpClient) {}
 
