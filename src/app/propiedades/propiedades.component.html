@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<div class="listado-container">
+  <!-- Sidebar de filtros -->
+  <aside class="sidebar">
+    <button class="btn-guardar">Guardar búsqueda</button>
+
+    <h3>Tipo de inmueble</h3>
+    <select>
+      <option value="">Viviendas</option>
+    </select>
+
+    <h3>Precio</h3>
+    <div class="filtro-precio">
+      <input type="number" placeholder="Mín">
+      <input type="number" placeholder="Máx">
+    </div>
+
+    <h3>Tamaño</h3>
+    <div class="filtro-tamaño">
+      <input type="number" placeholder="Mín">
+      <input type="number" placeholder="Máx">
+    </div>
+
+    <h3>Habitaciones</h3>
+    <div class="filtro-habitaciones">
+      <label><input type="checkbox" /> 1</label>
+      <label><input type="checkbox" /> 2</label>
+    </div>
+  </aside>
+
+  <!-- Contenedor de las propiedades -->
+  <section class="propiedades">
+    <div class="titulo">
+      <h1>105 casas y pisos en Arenal - Museo - Tetuán, Sevilla</h1>
+      <button class="btn-mapa">Ver en mapa</button>
+    </div>
+
+    <div class="ordenar">
+      <label>Ordenar:</label>
+      <select>
+        <option>Relevancia</option>
+        <option>Más baratos</option>
+        <option>Más recientes</option>
+      </select>
+    </div>
+
+    <div class="lista-propiedades">
+      <app-card-inmueble *ngFor="let inmueble of inmuebles" [datos]="inmueble"></app-card-inmueble>
+    </div>
+  </section>
+</div>
+
+
+
+<app-footer></app-footer>

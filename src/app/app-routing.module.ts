@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProvinciaComponent } from './provincia/provincia.component';
+import { PropiedadesComponent } from './propiedades/propiedades.component';
+import { PropiedadComponent } from './propiedad/propiedad.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'provincia', component: ProvinciaComponent }
+  { path: 'provincia', component: ProvinciaComponent },
+  { path: 'propiedades', component: PropiedadesComponent },
+  { path: 'propiedad/:id', component: PropiedadComponent }
 ];
 
 @NgModule({

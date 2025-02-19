@@ -7,6 +7,9 @@ import { InicioComponent } from './inicio/inicio.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProvinciaComponent } from './provincia/provincia.component';
+import { PropiedadesComponent } from './propiedades/propiedades.component';
+import { PropiedadComponent } from './propiedad/propiedad.component';
+import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import { ProvinciaComponent } from './provincia/provincia.component';
     HeaderComponent,
     FooterComponent,
     ProvinciaComponent,
+    PropiedadesComponent,
+    PropiedadComponent,
+    CardInmuebleComponent,
 
   ],
   imports: [
