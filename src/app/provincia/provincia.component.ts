@@ -60,7 +60,7 @@ export class ProvinciaComponent implements OnInit {
     if(this.filtro){
       this.filtro.localidad = localidad;
       localStorage.setItem('selectedOptions',JSON.stringify(this.filtro));
-      this.route.navigate(['/propiedad']);
+      this.route.navigate(['/propiedades']);
     }
   }
 }
