@@ -1,0 +1,40 @@
+<div class="auth-container">
+    <img src="assets/img/idealista.svg" alt="idealista" class="logo" />
+    <h2>Regístrate</h2>
+  
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Tu nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="correo">Tu email</label>
+        <input id="correo" type="email" formControlName="correo" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="telefono">Tu teléfono</label>
+        <input id="telefono" type="tel" formControlName="telefono" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="tipo_usuario">Selecciona tu rol</label>
+        <select formControlName="tipo_usuario">
+          <option value="comprador">Comprador</option>
+          <option value="vendedor">Vendedor</option>
+          <option value="agente">Agente</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasenia">Contraseña</label>
+        <input id="contrasenia" type="password" formControlName="contrasenia" required />
+      </div>
+  
+      <button type="submit" class="primary-btn" [disabled]="registroForm.invalid">Registrarse</button>
+    </form>
+  
+    <p class="register-link">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+  </div>
+  
