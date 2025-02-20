@@ -11,9 +11,8 @@ import { OficinasService } from '../services/oficinas.service'; // Asegúrate d
   styleUrls: ['./propiedades.component.scss']
 })
 export class PropiedadesComponent {
-  inmuebles = DATOS_INMUEBLES;
-  tipo_preferencia="";
-  tipo = 'casa'; // El tipo de propiedad seleccionado (puede ser 'casa', 'piso', etc.)
+  tipo_preferencia="Comprar";
+  tipo = 'piso'; // El tipo de propiedad seleccionado (puede ser 'casa', 'piso', etc.)
   provincia = 1; // ID de la provincia seleccionada (puedes obtenerlo de un selector)
   localidad = 1; // ID de la localidad seleccionada (puedes obtenerlo de un selector)
   propiedades: any[] = []; // Lista de propiedades filtradas
@@ -44,7 +43,7 @@ export class PropiedadesComponent {
 
   // Método para cargar las casas filtradas
   cargarCasas(): void {
-    this.casasService.obtenerCasas(this.tipo, this.provincia, this.localidad)
+    this.casasService.obtenerCasas(this.tipo_preferencia, this.provincia, this.localidad)
       .subscribe(
         (data) => {
           this.propiedades = data;
@@ -58,7 +57,7 @@ export class PropiedadesComponent {
 
   // Método para cargar los pisos filtrados
   cargarPisos(): void {
-    this.pisosService.obtenerPisos(this.tipo, this.provincia, this.localidad)
+    this.pisosService.obtenerPisos(this.tipo_preferencia, this.provincia, this.localidad)
       .subscribe(
         (data) => {
           this.propiedades = data;
@@ -71,7 +70,7 @@ export class PropiedadesComponent {
   }
 
   cargarLocales(): void {
-    this.localesService.obtenerLocales(this.tipo, this.provincia, this.localidad)
+    this.localesService.obtenerLocales(this.tipo_preferencia, this.provincia, this.localidad)
       .subscribe(
         (data) => {
           this.propiedades = data;
@@ -84,7 +83,7 @@ export class PropiedadesComponent {
   }
 
   cargarOficinas(): void {
-    this.oficinasService.obtenerOficinas(this.tipo, this.provincia, this.localidad)
+    this.oficinasService.obtenerOficinas(this.tipo_preferencia, this.provincia, this.localidad)
       .subscribe(
         (data) => {
           this.propiedades = data;
