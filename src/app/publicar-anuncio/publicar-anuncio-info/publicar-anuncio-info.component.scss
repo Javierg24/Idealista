@@ -1,0 +1,157 @@
+.publicar-anuncio {
+   
+align-items: center;
+    
+
+    
+.intro-container{
+     background: #fcfcc0;
+     padding: 30px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+    
+    .intro {
+       max-width: 1000px;
+        background: #ffffff;
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+        .info {
+            
+            max-width: 60%;
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    font-size: 1.1rem;
+                    margin-bottom: 8px;
+                }
+            }
+
+            .btn-primary {
+                display: inline-block;
+                background-color: #b40081;
+                color: white;
+                padding: 10px 20px;
+                font-size: 1.1rem;
+                border-radius: 5px;
+                text-decoration: none;
+                margin-top: 15px;
+            }
+
+            .profesional-text {
+                margin-top: 10px;
+                font-size: 0.9rem;
+
+                a {
+                    color: #007bff;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .image-container {
+            width: 35%;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+}
+    .steps {
+        display: flex;
+     flex-direction: column;
+     align-items: center;
+        background: #ffffff;
+        margin-top: 30px;
+        padding: 20px;
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .step {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                padding-left: 20px;
+
+                li {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+    .benefits {
+        margin-top: 40px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 20px;
+        }
+      
+        .benefits-container {
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+      
+          .benefit {
+            flex: 1;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+          
+            text-align: center;
+          
+      
+            h3 {
+              font-size: 1.2rem;
+              margin-bottom: 10px;
+              
+            }
+      
+            p {
+              font-size: 1rem;
+              color: #333;
+            }
+      
+          
+          }
+        }
+      
+        @media (max-width: 768px) {
+          .benefits-container {
+            flex-direction: column;
+            gap: 10px;
+          }
+        }
+      }
+    }

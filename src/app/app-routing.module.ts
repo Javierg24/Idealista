@@ -7,6 +7,7 @@ import { PropiedadComponent } from './propiedad/propiedad.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
+import { PublicarAnuncioInfoComponent } from './publicar-anuncio/publicar-anuncio-info/publicar-anuncio-info.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilUsuarioComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'publicar-anuncio-info', component: PublicarAnuncioInfoComponent },
 ];
 
 @NgModule({

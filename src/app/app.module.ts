@@ -20,6 +20,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
+import { PublicarAnuncioInfoComponent } from './publicar-anuncio/publicar-anuncio-info/publicar-anuncio-info.component';
+import { CrearAnuncioComponent } from './publicar-anuncio/crear-anuncio/crear-anuncio.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RegistroComponent } from './auth/registro/registro.component';
     PerfilUsuarioComponent,
     HeaderYellowComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    PublicarAnuncioInfoComponent,
+    CrearAnuncioComponent
 
   ],
   imports: [
