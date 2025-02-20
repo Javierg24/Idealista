@@ -12,7 +12,12 @@ import { PropiedadComponent } from './propiedad/propiedad.component';
 import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { HeaderYellowComponent } from './header-yellow/header-yellow.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { HeaderYellowComponent } from './header-yellow/header-yellow.component';
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
