@@ -70,7 +70,7 @@
     </div>
 
     <div class="lista-propiedades">
-      <app-card-inmueble *ngFor="let inmueble of propiedades" [datos]="inmueble"></app-card-inmueble>
+      <app-card-inmueble (click)="navigateToPropiedad(inmueble.id_propiedad)" *ngFor="let inmueble of propiedades" [datos]="inmueble"></app-card-inmueble>
     </div>
   </section>
 </div>

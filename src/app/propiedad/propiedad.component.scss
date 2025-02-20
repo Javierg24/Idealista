@@ -24,9 +24,10 @@
       margin-right: 5%;
       background-color: #ffffff;
 
-      .imagen {
+      .imagen-container {
         flex: 1;
-        margin-left:2%;
+        padding-inline: 2%;
+        
         img {
 
           justify-content: center;
