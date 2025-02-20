@@ -8,6 +8,7 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { PublicarAnuncioInfoComponent } from './publicar-anuncio/publicar-anuncio-info/publicar-anuncio-info.component';
+import { CrearAnuncioComponent } from './publicar-anuncio/crear-anuncio/crear-anuncio.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'publicar-anuncio-info', component: PublicarAnuncioInfoComponent },
+  { path: 'crear-anuncio', component: CrearAnuncioComponent },
 ];
 
 @NgModule({

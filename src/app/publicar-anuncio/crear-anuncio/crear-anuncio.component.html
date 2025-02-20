@@ -1,1 +1,96 @@
-<p>crear-anuncio works!</p>
+<div class="crear-anuncio">
+    <h2>Publicar un anuncio</h2>
+    <form [formGroup]="anuncioForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Selector de tipo de propiedad -->
+      <div class="form-group">
+        <label>Tipo de propiedad</label>
+        <select formControlName="tipo">
+          <option value="casa">Casa</option>
+          <option value="piso">Piso</option>
+          <option value="oficina">Oficina</option>
+          <option value="local">Local Comercial</option>
+        </select>
+      </div>
+  
+      <!-- Campos generales -->
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" formControlName="titulo" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea formControlName="descripcion" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Precio (€)</label>
+        <input type="number" formControlName="precio" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Provincia</label>
+        <input type="text" formControlName="id_provincia" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Localidad</label>
+        <input type="text" formControlName="id_localidad" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Tamaño (m²)</label>
+        <input type="number" formControlName="tamanio" required />
+      </div>
+  
+      <!-- Campos dinámicos según tipo de propiedad -->
+      <div *ngIf="tipoPropiedad === 'casa' || tipoPropiedad === 'piso'">
+        <div class="form-group">
+          <label>Habitaciones</label>
+          <input type="number" formControlName="n_habitaciones" />
+        </div>
+        <div class="form-group">
+          <label>Baños</label>
+          <input type="number" formControlName="n_banios" />
+        </div>
+      </div>
+  
+      <div *ngIf="tipoPropiedad === 'casa'">
+        <div class="form-group">
+          <label><input type="checkbox" formControlName="jardin" /> ¿Tiene jardín?</label>
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" formControlName="piscina" /> ¿Tiene piscina?</label>
+        </div>
+      </div>
+  
+      <div *ngIf="tipoPropiedad === 'piso' || tipoPropiedad === 'oficina'">
+        <div class="form-group">
+          <label>Planta</label>
+          <input type="number" formControlName="planta" />
+        </div>
+      </div>
+  
+      <div *ngIf="tipoPropiedad === 'oficina'">
+        <div class="form-group">
+          <label><input type="checkbox" formControlName="zona_comercial" /> ¿Está en zona comercial?</label>
+        </div>
+      </div>
+  
+      <div *ngIf="tipoPropiedad === 'local'">
+        <div class="form-group">
+          <label>Tipo de negocio</label>
+          <input type="text" formControlName="tipo_negocio" />
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" formControlName="zona_transitada" /> ¿Está en zona transitada?</label>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn-primary" [disabled]="anuncioForm.invalid || loading">
+        {{ loading ? 'Publicando...' : 'Publicar Anuncio' }}
+      </button>
+    </form>
+  </div>
+  
