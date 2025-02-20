@@ -10,29 +10,25 @@
       <form id="free-search-form" class="free-search-form" name="frmAnuDir" method="POST" action="/buscar/">
         <div id="form-new-radio-button-wrapper" class="form-new-radio-button-wrapper">
           <fieldset class="new-radio-button">
-            <input name="operation" id="free-search-operation-sale" type="radio" value="sale" autocomplete="off" />
+            <input name="operation" id="free-search-operation-sale" type="radio" value="sale" autocomplete="off" (click)="setSelectedPreferencia('Comprar')"/>
             <label for="free-search-operation-sale" title="Comprar">
               Comprar
             </label>
-            <input name="operation" id="free-search-operation-rent" type="radio" value="rent" autocomplete="off" />
+            <input name="operation" id="free-search-operation-rent" type="radio" value="rent" autocomplete="off" (click)="setSelectedPreferencia('Alquiler')"/>
             <label for="free-search-operation-rent" title="Alquilar">
               Alquilar
-            </label>
-            <input name="operation" id="free-search-operation-share" type="radio" value="share" autocomplete="off" />
-            <label for="free-search-operation-share" title="Compartir">
-              Compartir
             </label>
           </fieldset>
         </div>
         <div id="form-typology-wrapper" class="form-typology-wrapper">
-          <select id="typology" name="typology" class="dropdown-list">
+          <select id="typology" name="typology" class="dropdown-list" (change)="setSelectedTipoPropiedad($event)">
             <option value class="home-select-default-toggle">
               Tipo de inmueble
             </option>
-            <option value="home">Pisos</option>
-            <option value="office">Oficinas</option>
-            <option value="warehouse">Locales</option>
-            <option value="transfer">Casas</option>
+            <option value="PISOS">Pisos</option>
+            <option value="OFICINAS">Oficinas</option>
+            <option value="LOCALES">Locales</option>
+            <option value="CASAS">Casas</option>
           </select>
         </div>
         <mat-form-field>
