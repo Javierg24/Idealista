@@ -12,6 +12,7 @@ import { OficinasService } from '../services/oficinas.service'; // Asegúrate d
 })
 export class PropiedadesComponent {
   inmuebles = DATOS_INMUEBLES;
+  tipo_preferencia="";
   tipo = 'casa'; // El tipo de propiedad seleccionado (puede ser 'casa', 'piso', etc.)
   provincia = 1; // ID de la provincia seleccionada (puedes obtenerlo de un selector)
   localidad = 1; // ID de la localidad seleccionada (puedes obtenerlo de un selector)
