@@ -22,6 +22,7 @@ export class ProvinciaComponent implements OnInit {
     if(provString){
       prov = JSON.parse(provString);
     }
+    localStorage.removeItem('selectedProvincia');
     this.cargarLocalidades(prov?.id_provincia);
   }
 
