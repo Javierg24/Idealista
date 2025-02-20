@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistroComponent } from './auth/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PropiedadComponent,
     CardInmuebleComponent,
     PerfilUsuarioComponent,
-    HeaderYellowComponent
+    HeaderYellowComponent,
+    LoginComponent,
+    RegistroComponent
 
   ],
   imports: [
