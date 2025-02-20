@@ -11,15 +11,15 @@
 
     <div class="inmueble-container">
       <div class="imagen-container">
-        <img [src]="inmueble.imagen" [alt]="inmueble.titulo">
+        <img src="../../assets/img/casaInicio.jpg" [alt]="inmueble.titulo">
       </div>
       <!-- Información del inmueble -->
       <div class="info-container">
         <h1>{{ inmueble.titulo }}</h1>
-        <p class="ubicacion">{{ inmueble.ubicacion }} - <a href="#">Ver
+        <p class="ubicacion">{{ inmueble.provincia }} - {{inmueble.localidad}} - {{inmueble.ubicacion}}<a href="#">Ver
             mapa</a></p>
         <p class="precio">{{ inmueble.precio | currency:'EUR' }}</p>
-        <p class="detalles">{{ inmueble.metros }} m² | {{ inmueble.habitaciones
+        <p class="detalles">{{ inmueble.tamanio }} m² | {{ inmueble.n_habitaciones
           }}
           hab | Planta {{ inmueble.planta }} {{ inmueble.ascensor ?
           'con ascensor'
