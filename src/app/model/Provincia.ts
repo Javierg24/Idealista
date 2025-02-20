@@ -1,10 +1,10 @@
 export class Provincia{
 
-    id_propiedad: number;
+    id_provincia: number;
     nombre: string;
 
-    constructor(id_propiedad: number, nombre: string){
-        this.id_propiedad = id_propiedad;
+    constructor(id_provincia: number, nombre: string){
+        this.id_provincia = id_provincia;
         this.nombre = nombre;
     }
 

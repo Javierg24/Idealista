@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalidadesService } from '../services/localidades.service'; // Ajusta la ruta según tu estructura de carpetas
+import { ActivatedRoute } from '@angular/router';
+import { Provincia } from '../model/Provincia';
 
 @Component({
   selector: 'app-provincia',
@@ -12,16 +14,22 @@ export class ProvinciaComponent implements OnInit {
   localidades: any[] = []; // Lista de localidades que se actualizará con los datos del servicio
   error: string = ''; // Para manejar errores
 
-  constructor(private localidadesService: LocalidadesService) {}
+  constructor(private route: ActivatedRoute,private localidadesService: LocalidadesService) {}
 
   ngOnInit(): void {
-    this.cargarLocalidades();
+    const provString = localStorage.getItem('selectedProvincia');
+    let prov: Provincia | null = null;
+    if(provString){
+      prov = JSON.parse(provString);
+    }
+    this.cargarLocalidades(prov?.id_provincia);
   }
 
   // Método para cargar las localidades de la provincia
-  cargarLocalidades(): void {
-    const idProvincia = 1;
-
+  cargarLocalidades(idProvincia?: number): void {
+    if(!idProvincia){
+      idProvincia = 1;
+    }
     this.localidadesService.obtenerLocalidadesPorProvincia(idProvincia)
       .subscribe(
         (data) => {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { ProvinciasService } from '../services/provincias.service';
 import { Provincia } from '../model/Provincia';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -14,8 +15,9 @@ export class InicioComponent implements OnInit {
   provinciaControl = new FormControl('');
   provincias: Provincia[] = [];
   filteredProvincias$: Observable<Provincia[]> = new Observable();
+  selectedProvincia: Provincia | null = null;
 
-  constructor(private provinciasService: ProvinciasService) {}
+  constructor(private router: Router, private provinciasService: ProvinciasService) {}
 
   ngOnInit() {
     this.filteredProvincias$ = this.provinciaControl.valueChanges.pipe(
@@ -33,5 +35,14 @@ export class InicioComponent implements OnInit {
         )
       )
     );
+  }
+
+  setSelectedProvincia(prov: Provincia): void {
+    this.selectedProvincia = prov;
+  }
+
+  navigateToProvincia(): void {
+    localStorage.setItem("selectedProvincia",JSON.stringify(this.selectedProvincia));
+    this.router.navigate(['/provincia']);
   }
 }
