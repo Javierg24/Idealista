@@ -5,6 +5,7 @@ import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { ProvinciasService } from '../services/provincias.service';
 import { Provincia } from '../model/Provincia';
 import { Router } from '@angular/router';
+import { PropiedadFiltro } from '../model/PropiedadFiltro';
 
 @Component({
   selector: 'app-inicio',
@@ -15,7 +16,10 @@ export class InicioComponent implements OnInit {
   provinciaControl = new FormControl('');
   provincias: Provincia[] = [];
   filteredProvincias$: Observable<Provincia[]> = new Observable();
-  selectedProvincia: Provincia | null = null;
+  selectedProvincia: Provincia = new Provincia(0,"");
+  selectedPreferencia: string = '';
+  selectedTipoPropiedad: string = '';
+
 
   constructor(private router: Router, private provinciasService: ProvinciasService) {}
 
@@ -41,8 +45,17 @@ export class InicioComponent implements OnInit {
     this.selectedProvincia = prov;
   }
 
+  setSelectedTipoPropiedad(event: Event): void{
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedTipoPropiedad = selectElement.value;
+  }
+
+  setSelectedPreferencia(tipo: string): void{
+    this.selectedPreferencia = tipo;
+  }
+
   navigateToProvincia(): void {
-    localStorage.setItem("selectedProvincia",JSON.stringify(this.selectedProvincia));
+    localStorage.setItem("selectedOptions",JSON.stringify(new PropiedadFiltro(this.selectedTipoPropiedad,this.selectedPreferencia,this.selectedProvincia)));
     this.router.navigate(['/provincia']);
   }
 }
