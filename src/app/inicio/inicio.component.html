@@ -44,7 +44,7 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <button (click)="navigateToProvincia()" id="btn-free-search" class="btn action">Buscar</button>
+        <button (click)="navigateToProvincia()" id="btn-free-search" class="btn action" [disabled]="!selectedProvincia">Buscar</button>
       </form>
     </div>
   </section>
