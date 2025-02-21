@@ -9,6 +9,7 @@
   height: auto;
   display: flex;
   z-index: -1;
+  flex-wrap: wrap;
 }
 
 .container-imagen .new-search-box {
@@ -40,14 +41,19 @@
 
 .container-imagen .new-search-box .new-search-box-subtitle form {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper .new-radio-button {
   display: flex;
   border: none;
+}
+
+.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper input {
+  position: absolute;
+  opacity: 0;
 }
 
 .container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper label {
@@ -56,37 +62,58 @@
   background: white;
   color: #4D4D4C;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   transition: background 0.3s, color 0.3s;
 }
 
-.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper label:hover, .container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper label.active {
+.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper label:hover {
   background: #fff;
   color: #e50068;
   border-color: #e50068;
 }
 
-.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper label:checked {
+.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper input:checked + label {
   background: #fff;
   color: #e50068;
-}
-
-.container-imagen .new-search-box .new-search-box-subtitle form .form-new-radio-button-wrapper input {
-  display: none;
+  border-color: #e50068;
 }
 
 .container-imagen .new-search-box .new-search-box-subtitle form .form-typology-wrapper select {
-  padding: 12px 10px;
-  font-size: 16px;
+  padding: 10px 10px;
+  font-size: 0.9rem;
   border: 1px solid #CBCCC7;
 }
 
-.container-imagen .new-search-box .new-search-box-subtitle form .form-item-block input {
-  padding: 12px;
-  width: 70%;
-  max-width: 300px;
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field {
+  padding: 12px 30px;
+  width: 50%;
+  height: 65px;
+  max-width: 15vw;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0.5rem;
+}
+
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field .mat-form-field-flex {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field .mat-form-field-label,
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field mat-label {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.container-imagen .new-search-box .new-search-box-subtitle form mat-form-field input.mat-input-element {
+  color: black;
+  padding: 10px;
   font-size: 16px;
-  border: 1px solid #CBCCC7;
 }
 
 .container-imagen .new-search-box .new-search-box-subtitle form .btn {

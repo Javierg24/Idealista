@@ -16,6 +16,7 @@ $btn-text-color: #fff;
     height: auto;
     display: flex;
     z-index: -1;
+    flex-wrap: wrap; // Permite que los elementos se acomoden si no caben en una línea
   }
 
   .new-search-box {
@@ -46,9 +47,10 @@ $btn-text-color: #fff;
 
       form {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        align-items: center;  // Alinea verticalmente en el centro
+        justify-content: center; // Alinea horizontalmente en el centro
+        flex-wrap: wrap; // Permite que los elementos se acomoden si no caben en una línea
+
 
         .form-new-radio-button-wrapper {
 
@@ -57,51 +59,77 @@ $btn-text-color: #fff;
             border: none;
           }
 
+          input {
+            position: absolute;
+            opacity: 0;
+          }
+
+
           label {
             padding: 10px 10px;
             border: 1px solid #CBCCC7;
             background: white;
-            color:#4D4D4C;
+            color: #4D4D4C;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             transition: background 0.3s, color 0.3s;
 
-            &:hover,
-            &.active {
+
+            &:hover {
               background: $btn-text-color;
               color: $btn-background;
               border-color: $btn-background;
             }
-
-            &:checked {
+          }
+            input:checked + label {
               background: $btn-text-color;
               color: $btn-background;
+              border-color: $btn-background;
             }
-          }
-
-          input {
-            display: none;
-          }
         }
 
         .form-typology-wrapper {
 
           select {
-            padding: 12px 10px;
-            font-size: 16px;
+            padding: 10px 10px;
+            font-size: 0.9rem;
             border: 1px solid #CBCCC7;
           }
         }
 
-        .form-item-block {
+        mat-form-field {
+          padding: 12px 30px;
+          width: 50%;
+          height:65px;
+          max-width: 15vw;
+          font-size: 0.9rem; // Color de fondo
+          border-radius: 8px;  // Bordes redondeados
 
-          input {
-            padding: 12px;
-            width: 70%;
-            max-width: 300px;
-            font-size: 16px;
-            border: 1px solid #CBCCC7;
+          .mat-form-field-wrapper {
+            padding-bottom: 0.5rem;
+
           }
+
+          .mat-form-field-flex {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+
+          }
+
+          .mat-form-field-label,
+          mat-label {
+            color: $text-color;
+            font-size: 0.9rem;
+          }
+
+          input.mat-input-element {
+            color: black;
+            padding: 10px;
+            font-size: 16px;
+          }
+
         }
 
         .btn {
@@ -120,10 +148,7 @@ $btn-text-color: #fff;
         }
       }
     }
-
-
   }
-
 
 }
 

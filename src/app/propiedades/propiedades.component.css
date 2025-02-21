@@ -73,6 +73,22 @@
   font-size: 14px;
 }
 
+.listado-container .sidebar .btn {
+  margin-top: 3%;
+  padding: 12px 30px;
+  background: #e50068;
+  color: white;
+  border: none;
+  border-radius: .125rem;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.listado-container .sidebar .btn:hover {
+  background: #b20051;
+}
+
 .listado-container .propiedades {
   flex-grow: 1;
 }
