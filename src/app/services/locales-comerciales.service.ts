@@ -1,21 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
+import { Propiedad, PropiedadesService } from './propiedades.service';
 
-export interface LocalComercial {
-  id_propiedad?: number;
-  titulo: string;
-  descripcion: string;
-  precio: number;
-  id_provincia: number;
-  id_localidad: number;
-  tamanio: number;
-  id_usuario: number;
-  nombre: string;
-  correo: string;
+export interface LocalComercial extends Propiedad {
   tipo_negocio: string;
   zona_transitada: boolean;
-  fecha_publicacion?: string;
 }
 
 @Injectable({
@@ -24,7 +14,7 @@ export interface LocalComercial {
 export class LocalesComercialesService {
   private apiUrl = 'http://localhost/idealista/PHP/controller/LocalesController.php';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private propiedadesService: PropiedadesService) {}
 
   // Obtener todos los locales comerciales filtrados por tipo, provincia y localidad
   obtenerLocales(tipo: string, id_provincia: number, id_localidad: number): Observable<LocalComercial[]> {
@@ -43,8 +33,18 @@ export class LocalesComercialesService {
 
   // Agregar un nuevo local comercial
   agregarLocal(local: LocalComercial): Observable<any> {
-    return this.http.post<any>(this.apiUrl, local);
+    return this.propiedadesService.agregarPropiedad(local).pipe(
+      switchMap((response) => {
+        if (response.success && response.id_propiedad) {
+          const nuevoLocal: LocalComercial = { ...local, id_propiedad: response.id_propiedad };
+          return this.http.post<any>(this.apiUrl, nuevoLocal);
+        } else {
+          return throwError(() => new Error("Error al insertar la propiedad"));
+        }
+      })
+    );
   }
+  
 
   // Actualizar un local comercial existente
   actualizarLocal(local: LocalComercial): Observable<any> {

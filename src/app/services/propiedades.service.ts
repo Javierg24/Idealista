@@ -10,7 +10,7 @@ export interface Propiedad {
   ubicacion: string;
   tamanio: number;
   id_usuario: number;
-  tipo: string;
+  tipo: 'Alquiler' | 'Comprar' | 'Compartir';
   id_provincia: number;
   id_localidad: number;
   fecha_publicacion?: string;

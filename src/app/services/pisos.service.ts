@@ -1,22 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
+import { Propiedad, PropiedadesService } from './propiedades.service';
 
-export interface Piso {
-  id_propiedad?: number;
-  titulo: string;
-  descripcion: string;
-  precio: number;
-  id_provincia: number;
-  id_localidad: number;
-  tamanio: number;
-  id_usuario: number;
-  nombre: string;
-  correo: string;
+export interface Piso extends Propiedad {
   n_habitaciones: number;
   n_banios: number;
   planta: number;
-  fecha_publicacion?: string;
 }
 
 @Injectable({
@@ -25,7 +15,7 @@ export interface Piso {
 export class PisosService {
   private apiUrl = 'http://localhost/idealista/PHP/controller/PisosController.php';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private propiedadesService: PropiedadesService) {}
 
   // Obtener todos los pisos filtrados por tipo, provincia y localidad
   obtenerPisos(tipo: string, id_provincia: number, id_localidad: number): Observable<Piso[]> {
@@ -44,9 +34,17 @@ export class PisosService {
 
   // Agregar un nuevo piso
   agregarPiso(piso: Piso): Observable<any> {
-    return this.http.post<any>(this.apiUrl, piso);
+    return this.propiedadesService.agregarPropiedad(piso).pipe(
+      switchMap((response) => {
+        if (response.success && response.id_propiedad) {
+          const nuevoPiso: Piso = { ...piso, id_propiedad: response.id_propiedad };
+          return this.http.post<any>(this.apiUrl, nuevoPiso);
+        } else {
+          return throwError(() => new Error("Error al insertar la propiedad"));
+        }
+      })
+    );
   }
-
   // Actualizar un piso existente
   actualizarPiso(piso: Piso): Observable<any> {
     return this.http.put<any>(this.apiUrl, piso);

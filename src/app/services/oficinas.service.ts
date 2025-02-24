@@ -1,22 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
+import { Propiedad, PropiedadesService } from './propiedades.service';
 
-export interface Oficina {
-  id_propiedad?: number;
-  titulo: string;
-  descripcion: string;
-  precio: number;
-  id_provincia: number;
-  id_localidad: number;
-  tamanio: number;
-  id_usuario: number;
-  nombre: string;
-  correo: string;
+export interface Oficina extends Propiedad {
   n_salas: number;
   planta: number;
   zona_comercial: boolean;
-  fecha_publicacion?: string;
 }
 
 @Injectable({
@@ -25,7 +15,7 @@ export interface Oficina {
 export class OficinasService {
   private apiUrl = 'http://localhost/idealista/PHP/controller/OficinasController.php';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private propiedadesService: PropiedadesService) {}
 
   // Obtener todas las oficinas filtradas por tipo, provincia y localidad
   obtenerOficinas(tipo: string, id_provincia: number, id_localidad: number): Observable<Oficina[]> {
@@ -44,9 +34,18 @@ export class OficinasService {
 
   // Agregar una nueva oficina
   agregarOficina(oficina: Oficina): Observable<any> {
-    return this.http.post<any>(this.apiUrl, oficina);
+    return this.propiedadesService.agregarPropiedad(oficina).pipe(
+      switchMap((response) => {
+        if (response.success && response.id_propiedad) {
+          const nuevaOficina: Oficina = { ...oficina, id_propiedad: response.id_propiedad };
+          return this.http.post<any>(this.apiUrl, nuevaOficina);
+        } else {
+          return throwError(() => new Error("Error al insertar la propiedad"));
+        }
+      })
+    );
   }
-
+  
   // Actualizar una oficina existente
   actualizarOficina(oficina: Oficina): Observable<any> {
     return this.http.put<any>(this.apiUrl, oficina);

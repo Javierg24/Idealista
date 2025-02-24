@@ -1,23 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
+import { Propiedad, PropiedadesService } from './propiedades.service';
 
-export interface Casa {
-  id_propiedad?: number;
-  titulo: string;
-  descripcion: string;
-  precio: number;
-  id_provincia: number;
-  id_localidad: number;
-  tamanio: number;
-  id_usuario: number;
-  nombre: string;
-  correo: string;
+export interface Casa extends Propiedad{
   n_habitaciones: number;
   n_banios: number;
   jardin: boolean;
   piscina: boolean;
-  fecha_publicacion: string;
 }
 
 @Injectable({
@@ -26,7 +16,7 @@ export interface Casa {
 export class CasasService {
   private apiUrl = 'http://localhost/idealista/PHP/controller/CasasController.php';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,  private propiedadesService: PropiedadesService) {}
 
   // Obtener todas las casas filtradas por tipo, provincia y localidad
   obtenerCasas(tipo: string, id_provincia: number, id_localidad: number): Observable<Casa[]> {
@@ -45,8 +35,18 @@ export class CasasService {
 
   // Agregar una nueva casa
   agregarCasa(casa: Casa): Observable<any> {
-    return this.http.post<any>(this.apiUrl, casa);
+    return this.propiedadesService.agregarPropiedad(casa).pipe(
+      switchMap((response) => {
+        if (response.success && response.id_propiedad) {
+          const nuevaCasa: Casa = { ...casa, id_propiedad: response.id_propiedad };
+          return this.http.post<any>(this.apiUrl, nuevaCasa);
+        } else {
+          return throwError(() => new Error("Error al insertar la propiedad"));
+        }
+      })
+    );
   }
+  
 
   // Actualizar una casa existente
   actualizarCasa(casa: Casa): Observable<any> {
