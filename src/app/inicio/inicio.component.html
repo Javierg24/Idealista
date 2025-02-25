@@ -7,21 +7,28 @@
   <section class="new-search-box">
     <h1 class="new-search-box-title">Estás en casa y me gusta</h1>
     <div class="new-search-box-subtitle">
-      <form id="free-search-form" class="free-search-form" name="frmAnuDir" method="POST" action="/buscar/">
-        <div id="form-new-radio-button-wrapper" class="form-new-radio-button-wrapper">
+      <form id="free-search-form" class="free-search-form" name="frmAnuDir"
+        method="POST" action="/buscar/">
+        <div id="form-new-radio-button-wrapper"
+          class="form-new-radio-button-wrapper">
           <fieldset class="new-radio-button">
-            <input name="operation" id="free-search-operation-sale" type="radio" value="sale" autocomplete="off" (click)="setSelectedPreferencia('Comprar')"/>
+            <input name="operation" id="free-search-operation-sale" type="radio"
+              value="sale" autocomplete="off"
+              (click)="setSelectedPreferencia('Comprar')" />
             <label for="free-search-operation-sale" title="Comprar">
               Comprar
             </label>
-            <input name="operation" id="free-search-operation-rent" type="radio" value="rent" autocomplete="off" (click)="setSelectedPreferencia('Alquiler')"/>
+            <input name="operation" id="free-search-operation-rent" type="radio"
+              value="rent" autocomplete="off"
+              (click)="setSelectedPreferencia('Alquiler')" />
             <label for="free-search-operation-rent" title="Alquilar">
               Alquilar
             </label>
           </fieldset>
         </div>
         <div id="form-typology-wrapper" class="form-typology-wrapper">
-          <select id="typology" name="typology" class="dropdown-list" (change)="setSelectedTipoPropiedad($event)">
+          <select id="typology" name="typology" class="dropdown-list"
+            (change)="setSelectedTipoPropiedad($event)">
             <option value class="home-select-default-toggle">
               Tipo de inmueble
             </option>
@@ -33,30 +40,28 @@
         </div>
         <mat-form-field>
           <mat-label>Provincia</mat-label>
-          <input type="text" matInput [formControl]="provinciaControl" [matAutocomplete]="auto">
+          <input type="text" matInput [formControl]="provinciaControl"
+            [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let provincia of filteredProvincias$ | async" [value]="provincia.nombre" (onSelectionChange)="setSelectedProvincia(provincia)">
+            <mat-option *ngFor="let provincia of filteredProvincias$ | async"
+              [value]="provincia.nombre"
+              (onSelectionChange)="setSelectedProvincia(provincia)">
               {{ provincia.nombre }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <button (click)="navigateToProvincia()" id="btn-free-search" class="btn action" [disabled]="!selectedProvincia">Buscar</button>
+        <button
+          (click)="navigateToProvincia()"
+          id="btn-free-search"
+          class="btn action"
+          [disabled]="!selectedPreferencia || !selectedTipoPropiedad || !selectedProvincia">
+          Buscar
+        </button>
+
       </form>
     </div>
   </section>
 </div>
-<!--
-<div class="form-item-block" layermobileonblurexclusion="on">
-  <label for="campoBus" class="screen-reader-only"></label>
-  <input id="campoBus" mobileonblur="on" autocomplete="off" type="text" data-validation="pattern required"
-    data-pattern=".{2,}" data-do-not-markup-xiti-validation="false" placeholder="Escribe dónde buscas"
-    name="freeText" data-message-required="Escribe una ubicación donde buscar"
-    data-message-pattern="Escribe una ubicación donde buscar" />
-  <div class="container-result-list">
-    <div class="result-list search-near"></div>
-  </div>
-</div>
--->
 <div class="home-app">
 
   <article
