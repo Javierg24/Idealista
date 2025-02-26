@@ -1,0 +1,30 @@
+<section class="news-section">
+  <p class="news-title">idealista/news</p>
+  <h2 class="news-subtitle">
+    Las principales noticias y actualidad sobre el mercado
+  </h2>
+
+  <!-- Pestañas -->
+  <div class="news-tabs">
+    <button
+      *ngFor="let tab of tabs"
+      [class.active]="tab === activeTab"
+      (click)="selectTab(tab)"
+    >
+      {{ tab }}
+    </button>
+  </div>
+
+  <!-- Contenido de las noticias -->
+  <div class="news-content">
+    <div *ngFor="let news of filteredNews" class="news-card">
+      <div class="news-image">
+        <img [src]="news.image" [alt]="news.title" />
+      </div>
+      <div class="news-text">
+        <p>{{ news.description }}</p>
+        <a [href]="news.link" target="_blank">Leer más</a>
+      </div>
+    </div>
+  </div>
+</section>

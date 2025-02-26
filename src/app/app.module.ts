@@ -22,6 +22,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { PublicarAnuncioInfoComponent } from './publicar-anuncio/publicar-anuncio-info/publicar-anuncio-info.component';
 import { CrearAnuncioComponent } from './publicar-anuncio/crear-anuncio/crear-anuncio.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CrearAnuncioComponent } from './publicar-anuncio/crear-anuncio/crear-an
     LoginComponent,
     RegistroComponent,
     PublicarAnuncioInfoComponent,
-    CrearAnuncioComponent
+    CrearAnuncioComponent,
+    NoticiasComponent
 
   ],
   imports: [

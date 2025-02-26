@@ -10,7 +10,6 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { PublicarAnuncioInfoComponent } from './publicar-anuncio/publicar-anuncio-info/publicar-anuncio-info.component';
 import { CrearAnuncioComponent } from './publicar-anuncio/crear-anuncio/crear-anuncio.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
