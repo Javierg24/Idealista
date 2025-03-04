@@ -37,7 +37,7 @@ export class CrearAnuncioComponent implements OnInit {
     private router: Router
   ) {
     this.anuncioForm = this.fb.group({
-      tipo: ['casa', Validators.required], // Tipo de propiedad
+      tipo: ['Alquiler', Validators.required], // Tipo de propiedad
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
       precio: ['', [Validators.required, Validators.min(1)]],
@@ -101,7 +101,11 @@ export class CrearAnuncioComponent implements OnInit {
     if (this.anuncioForm.valid) {
       this.loading = true;
 
-      const formData = { ...this.anuncioForm.value, id_usuario: this.usuarioAutenticado?.id_usuario };
+      const formData = { 
+        ...this.anuncioForm.value,
+         id_usuario: this.usuarioAutenticado?.id_usuario,
+         tipo: this.anuncioForm.value.tipoOperacion
+        };
 
       console.log("Datos enviados al backend:", formData);
 
