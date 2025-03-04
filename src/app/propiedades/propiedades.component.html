@@ -11,52 +11,73 @@
   <!-- Sidebar de filtros -->
   <aside class="sidebar">
     <h3>Tipo de inmueble</h3>
-    <select>
-      <option value="">Casas</option>
-      <option value="">Pisos</option>
-      <option value="">Oficinas</option>
-      <option value="">Locales</option>
+    <select [(ngModel)]="tipo_propiedad" (ngModelChange)="actualizarFiltros()">
+      <option value="casas">Casas</option>
+      <option value="pisos">Pisos</option>
+      <option value="oficinas">Oficinas</option>
+      <option value="locales">Locales</option>
     </select>
 
-    <h3>Precio</h3>
+    <!-- Filtro de precio -->
     <div class="filtro-precio">
-      <input type="number" placeholder="Mín">
-      <input type="number" placeholder="Máx">
+      <input type="number" [(ngModel)]="precioMin" (ngModelChange)="actualizarFiltros()" placeholder="Mín">
+      <input type="number" [(ngModel)]="precioMax" (ngModelChange)="actualizarFiltros()" placeholder="Máx">
     </div>
 
-    <h3>Tamaño</h3>
+    <!-- Filtro de tamaño -->
     <div class="filtro-tamaño">
-      <input type="number" placeholder="Mín">
-      <input type="number" placeholder="Máx">
+      <input type="number" [(ngModel)]="tamanoMin" (ngModelChange)="actualizarFiltros()" placeholder="Mín">
+      <input type="number" [(ngModel)]="tamanoMax" (ngModelChange)="actualizarFiltros()" placeholder="Máx">
     </div>
 
-    <h3>Habitaciones</h3>
-    <div class="filtro-habitaciones">
-      <label><input type="checkbox" /> 0</label>
-      <label><input type="checkbox" /> 1</label>
-      <label><input type="checkbox" /> 2</label>
-      <label><input type="checkbox" /> 3</label>
-      <label><input type="checkbox" /> 4 habitaciones o más</label>
+    <!-- Filtro de habitaciones -->
+    <div class="filtro-habitaciones" *ngIf="tipo_propiedad === 'casas' || tipo_propiedad === 'pisos'">
+      <h3>Habitaciones</h3>
+      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 1</label>
+      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 2</label>
+      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 3</label>
+      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 4</label>
+      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 4 o más</label>
     </div>
 
-    <h3>Baños</h3>
-    <div class="filtro-habitaciones">
-      <label><input type="checkbox" /> 1</label>
-      <label><input type="checkbox" /> 2</label>
-      <label><input type="checkbox" /> 3 baños o mas</label>
+    <!-- Filtro de baños -->
+    <div class="filtro-banos" *ngIf="tipo_propiedad === 'casas' || tipo_propiedad === 'pisos'">
+      <h3>Baños</h3>
+      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 1</label>
+      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 2</label>
+      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 3</label>
+      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 4 o más</label>
     </div>
 
-    <h3>Caracteristicas</h3>
-    <div class="filtro-caracteristicas">
-      <label><input type="checkbox" /> 0</label>
-      <label><input type="checkbox" /> 1</label>
-      <label><input type="checkbox" /> 2</label>
-      <label><input type="checkbox" /> 3</label>
-      <label><input type="checkbox" /> 4 habitaciones o más</label>
+    <!-- Filtro de extras (jardín, piscina) -->
+    <div class="filtro-extra" *ngIf="tipo_propiedad === 'casas'">
+      <h3>Extras</h3>
+      <label><input type="checkbox" [(ngModel)]="extras.jardin" (ngModelChange)="actualizarFiltros()" /> Jardín</label>
+      <label><input type="checkbox" [(ngModel)]="extras.piscina" (ngModelChange)="actualizarFiltros()" /> Piscina</label>
+    </div>
+
+    <div class="filtro-piso" *ngIf="tipo_propiedad === 'pisos'">
+      <h3>Planta</h3>
+      <select>
+        <option value="">Cualquiera</option>
+        <option *ngFor="let planta of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]">{{planta}}</option>
+      </select>
+    </div>
+
+    <div class="filtro-oficinas" *ngIf="tipo_propiedad === 'oficinas'">
+      <h3>Oficinas</h3>
+      <label><input type="checkbox" /> Zona comercial</label>
+      <label><input type="checkbox" /> Sala de reuniones</label>
+      <label><input type="checkbox" /> Recepción</label>
+    </div>
+
+    <div class="filtro-locales" *ngIf="tipo_propiedad === 'locales'">
+      <h3>Tipo de negocio</h3>
+      <label><input type="checkbox" /> Tienda</label>
+      <label><input type="checkbox" /> Restaurante</label>
     </div>
 
     <button class="btn" type="submit">Buscar</button>
-
   </aside>
 
   <!-- Contenedor de las propiedades -->

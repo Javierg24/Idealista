@@ -27,6 +27,22 @@ export class PisosService {
     return this.http.get<Piso[]>(this.apiUrl, { params });
   }
 
+  // Obtener pisos filtrados por tipo, provincia, localidad y precio
+obtenerPisos2(tipo: string, id_provincia: number, id_localidad: number, precio_min: number, precio_max: number, n_habitaciones: number, n_banios: number, planta: number): Observable<Piso[]> {
+  const params = new HttpParams()
+    .set('tipo', tipo)
+    .set('id_provincia', id_provincia)
+    .set('id_localidad', id_localidad)
+    .set('precio_min', precio_min.toString())
+    .set('precio_max', precio_max.toString())
+    .set('n_habitaciones', n_habitaciones.toString())
+    .set('n_banios', n_banios.toString())
+    .set('planta', planta.toString());
+
+  return this.http.get<Piso[]>(this.apiUrl, { params });
+}
+
+
   // Obtener un piso por su ID
   obtenerPisoPorId(id: number): Observable<Piso> {
     return this.http.get<Piso>(`${this.apiUrl}?id_propiedad=${id}`);

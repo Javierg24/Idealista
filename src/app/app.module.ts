@@ -13,7 +13,7 @@ import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { HeaderYellowComponent } from './header-yellow/header-yellow.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -44,6 +44,7 @@ import { NoticiasComponent } from './noticias/noticias.component';
 
   ],
   imports: [
+    FormsModule, 
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
