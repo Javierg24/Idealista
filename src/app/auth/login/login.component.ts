@@ -29,7 +29,7 @@ export class LoginComponent {
           this.cargando = false; //  Detener el spinner cuando recibimos respuesta
 
           if (response.success) {
-            localStorage.setItem('usuario', JSON.stringify(response.usuario));
+            localStorage.setItem('usuario', JSON.stringify(response.usuario[0]));
             this.router.navigate(['/']);
           } else {
             alert('Credenciales incorrectas');

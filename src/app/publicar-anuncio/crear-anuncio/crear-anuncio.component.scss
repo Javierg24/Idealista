@@ -1,46 +1,91 @@
+.header {
+  background-color: #e1f56e
+}
+
+.header .container-menu {
+  width: 70%;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px
+}
+
+.header .container-menu .logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer
+}
+
+.header .container-menu .logo img {
+  height: 35px
+}
+
+.header .container-menu .enlaces {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+.header .container-menu .enlaces .enlace {
+  padding: 1%;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s
+}
+
+.header .container-menu .enlaces .enlace:hover {
+  background-color: #cfe500
+}
+
+
 .crear-anuncio {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  
-    .form-group {
-      margin-bottom: 15px;
-  
-      label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-  
-      input, textarea, select {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    }
-  
-    .btn-primary {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
       display: block;
-      width: 100%;
-      padding: 10px;
-      background: #b40081;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
-  
-    .btn-primary:disabled {
-      background: #ccc;
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
   }
-  
+
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #b40081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-primary:disabled {
+    background: #ccc;
+  }
+}
