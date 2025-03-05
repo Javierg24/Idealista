@@ -18,12 +18,15 @@
       <option value="locales">Locales</option>
     </select>
 
+    <h3>Precio</h3>
     <!-- Filtro de precio -->
     <div class="filtro-precio">
+
       <input type="number" [(ngModel)]="precioMin" (ngModelChange)="actualizarFiltros()" placeholder="Mín">
       <input type="number" [(ngModel)]="precioMax" (ngModelChange)="actualizarFiltros()" placeholder="Máx">
     </div>
 
+    <h3>Tamaño</h3>
     <!-- Filtro de tamaño -->
     <div class="filtro-tamaño">
       <input type="number" [(ngModel)]="tamanoMin" (ngModelChange)="actualizarFiltros()" placeholder="Mín">
@@ -33,20 +36,25 @@
     <!-- Filtro de habitaciones -->
     <div class="filtro-habitaciones" *ngIf="tipo_propiedad === 'casas' || tipo_propiedad === 'pisos'">
       <h3>Habitaciones</h3>
-      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 1</label>
-      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 2</label>
-      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 3</label>
-      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 4</label>
-      <label><input type="checkbox" [(ngModel)]="habitaciones" (ngModelChange)="actualizarFiltros()" /> 4 o más</label>
+      <label *ngFor="let opcion of [1, 2, 3, 4, 5]">
+        <input
+          type="checkbox"
+          [checked]="habitaciones !== null && opcion >= habitaciones"
+          (change)="actualizarHabitaciones(opcion)"
+        /> {{ opcion === 5 ? '4 o más' : opcion }}
+      </label>
     </div>
 
-    <!-- Filtro de baños -->
+
     <div class="filtro-banos" *ngIf="tipo_propiedad === 'casas' || tipo_propiedad === 'pisos'">
       <h3>Baños</h3>
-      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 1</label>
-      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 2</label>
-      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 3</label>
-      <label><input type="checkbox" [(ngModel)]="banos" (ngModelChange)="actualizarFiltros()" /> 4 o más</label>
+      <label *ngFor="let opcion of [1, 2, 3, 4]">
+        <input
+          type="checkbox"
+          [checked]="banos !== null && opcion >= banos"
+          (change)="actualizarBanos(opcion)"
+        /> {{ opcion === 4 ? '4 o mas' : opcion }}
+      </label>
     </div>
 
     <!-- Filtro de extras (jardín, piscina) -->
@@ -77,7 +85,8 @@
       <label><input type="checkbox" /> Restaurante</label>
     </div>
 
-    <button class="btn" type="submit">Buscar</button>
+    <button id="btn-buscar" class="btn" (click)="buscarPropiedades()">Buscar</button>
+
   </aside>
 
   <!-- Contenedor de las propiedades -->

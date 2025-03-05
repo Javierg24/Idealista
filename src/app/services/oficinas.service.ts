@@ -28,29 +28,56 @@ export class OficinasService {
   }
 
   // Obtener oficinas con filtros avanzados
-obtenerOficinas2(
-  tipo?: string,
-  id_provincia?: number,
-  id_localidad?: number,
-  precio_min?: number,
-  precio_max?: number,
-  n_salas?: number,
-  planta?: number,
-  zona_comercial?: boolean
-): Observable<Oficina[]> {
-  let params = new HttpParams();
+  obtenerOficinas2(
+    tipo: string | undefined,
+    id_provincia: number | undefined,
+    id_localidad: number | undefined,
+    precio_min: number | null,
+    precio_max: number | null,
+    n_salas: number | null,
+    planta: number | null,
+    zona_comercial: boolean | null,
+    tamanio_min: number | null,
+    tamanio_max: number | null
+  ): Observable<Oficina[]> {
+    let params = new HttpParams();
 
-  if (tipo) params = params.set('tipo', tipo);
-  if (id_provincia) params = params.set('id_provincia', id_provincia);
-  if (id_localidad) params = params.set('id_localidad', id_localidad);
-  if (precio_min !== undefined) params = params.set('precio_min', precio_min);
-  if (precio_max !== undefined) params = params.set('precio_max', precio_max);
-  if (n_salas !== undefined) params = params.set('n_salas', n_salas);
-  if (planta !== undefined) params = params.set('planta', planta);
-  if (zona_comercial !== undefined) params = params.set('zona_comercial', zona_comercial.toString());
+    // Añadir parámetros solo si no son nulos o indefinidos
+    if (tipo !== undefined) {
+      params = params.set('tipo', tipo);
+    }
+    if (id_provincia !== undefined) {
+      params = params.set('id_provincia', id_provincia.toString());
+    }
+    if (id_localidad !== undefined) {
+      params = params.set('id_localidad', id_localidad.toString());
+    }
+    if (precio_min !== null && precio_min !== undefined) {
+      params = params.set('precio_min', precio_min.toString());
+    }
+    if (precio_max !== null && precio_max !== undefined) {
+      params = params.set('precio_max', precio_max.toString());
+    }
+    if (n_salas !== null && n_salas !== undefined) {
+      params = params.set('n_salas', n_salas.toString());
+    }
+    if (planta !== null && planta !== undefined) {
+      params = params.set('planta', planta.toString());
+    }
+    if (zona_comercial !== null && zona_comercial !== undefined) {
+      params = params.set('zona_comercial', zona_comercial ? '1' : '0');
+    }
+    if (tamanio_min !== null && tamanio_min !== undefined) {
+      params = params.set('tamanio_min', tamanio_min.toString());
+    }
+    if (tamanio_max !== null && tamanio_max !== undefined) {
+      params = params.set('tamanio_max', tamanio_max.toString());
+    }
 
-  return this.http.get<Oficina[]>(this.apiUrl, { params });
-}
+
+    return this.http.get<Oficina[]>(this.apiUrl, { params });
+  }
+
 
 
   // Obtener una oficina por su ID

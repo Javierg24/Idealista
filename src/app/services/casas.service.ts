@@ -79,7 +79,7 @@ export class CasasService {
       params = params.set('tamanio_max', tamanio_max.toString());
     }
 
-    return this.http.get<any[]>('http://tu-api-url/obtenerCasas', { params });
+    return this.http.get<any[]>(this.apiUrl, { params });
   }
 
   // Agregar una nueva casa

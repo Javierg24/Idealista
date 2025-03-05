@@ -28,26 +28,51 @@ export class LocalesComercialesService {
 
   // Obtener locales comerciales con filtros avanzados
   obtenerLocales2(
-    tipo?: string,
-    id_provincia?: number,
-    id_localidad?: number,
-    precio_min?: number,
-    precio_max?: number,
-    zona_transitada?: boolean,
-    tipo_negocio?: string
+    tipo: string | undefined,
+    id_provincia: number | undefined,
+    id_localidad: number | undefined,
+    precio_min: number | null,
+    precio_max: number | null,
+    zona_transitada: boolean | null,
+    tipo_negocio: string | undefined,
+    tamanio_min: number | null,
+    tamanio_max: number | null
   ): Observable<LocalComercial[]> {
     let params = new HttpParams();
 
-    if (tipo) params = params.set('tipo', tipo);
-    if (id_provincia) params = params.set('id_provincia', id_provincia);
-    if (id_localidad) params = params.set('id_localidad', id_localidad);
-    if (precio_min !== undefined) params = params.set('precio_min', precio_min);
-    if (precio_max !== undefined) params = params.set('precio_max', precio_max);
-    if (zona_transitada !== undefined) params = params.set('zona_transitada', zona_transitada.toString());
-    if (tipo_negocio) params = params.set('tipo_negocio', tipo_negocio);
+    // Añadir parámetros solo si no son nulos o indefinidos
+    if (tipo !== undefined) {
+      params = params.set('tipo', tipo);
+    }
+    if (id_provincia !== undefined) {
+      params = params.set('id_provincia', id_provincia.toString());
+    }
+    if (id_localidad !== undefined) {
+      params = params.set('id_localidad', id_localidad.toString());
+    }
+    if (precio_min !== null && precio_min !== undefined) {
+      params = params.set('precio_min', precio_min.toString());
+    }
+    if (precio_max !== null && precio_max !== undefined) {
+      params = params.set('precio_max', precio_max.toString());
+    }
+    if (zona_transitada !== null && zona_transitada !== undefined) {
+      params = params.set('zona_transitada', zona_transitada ? '1' : '0');
+    }
+    if (tipo_negocio !== undefined) {
+      params = params.set('tipo_negocio', tipo_negocio);
+    }
+    if (tamanio_min !== null && tamanio_min !== undefined) {
+      params = params.set('tamanio_min', tamanio_min.toString());
+    }
+    if (tamanio_max !== null && tamanio_max !== undefined) {
+      params = params.set('tamanio_max', tamanio_max.toString());
+    }
+
 
     return this.http.get<LocalComercial[]>(this.apiUrl, { params });
   }
+
 
 
   // Obtener un local comercial por su ID

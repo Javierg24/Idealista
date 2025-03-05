@@ -25,7 +25,6 @@ export class PropiedadesComponent {
   error: string = ''; // Para manejar errores
   filtros: PropiedadFiltro | null = null;
   filtrosSeleccionados: any[] = [];
-
   // Filtros para el tipo de propiedad
   precioMin: number | null = null;  // Asegurándote de que solo pueda ser número o null, no undefined
   precioMax: number | null = null;
@@ -40,42 +39,10 @@ export class PropiedadesComponent {
   planta: number | null = null;
   n_salas: number | null = null;
   zona_comercial: boolean = false;
-  tipoNegocio: string[] = [];
+  tipo_negocio: string | null = null;
   tipoPropiedad: string[] = [];
   zona_transitada: boolean = false;
 
-
-
-
-  filtrosDisponibles = {
-    casas: [
-      { nombre: 'Habitaciones', tipo: 'checkbox', opciones: [1, 2, 3, 4, '4 o más'] },
-      { nombre: 'Baños', tipo: 'checkbox', opciones: [1, 2, 3, '3 o más'] },
-      { nombre: 'Jardín', tipo: 'checkbox', opciones: ['Sí'] },
-      { nombre: 'Piscina', tipo: 'checkbox', opciones: ['Sí'] },
-      { nombre: 'Tamaño mínimo (m²)', tipo: 'number' },
-      { nombre: 'Tamaño máximo (m²)', tipo: 'number' }
-    ],
-    pisos: [
-      { nombre: 'Habitaciones', tipo: 'checkbox', opciones: [1, 2, 3, 4, '4 o más'] },
-      { nombre: 'Baños', tipo: 'checkbox', opciones: [1, 2, 3, '3 o más'] },
-      { nombre: 'Planta', tipo: 'checkbox', opciones: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
-      { nombre: 'Tamaño mínimo (m²)', tipo: 'number' },
-      { nombre: 'Tamaño máximo (m²)', tipo: 'number' }
-    ],
-    oficinas: [
-      { nombre: 'Tamaño mínimo (m²)', tipo: 'number' },
-      { nombre: 'Tamaño máximo (m²)', tipo: 'number' },
-      { nombre: 'Planta', tipo: 'number' },
-      { nombre: 'Numero de salas', tipo: 'checkbox', opciones: [1, 2, 3, 4, 5, 6, 7, 8] },
-      { nombre: 'zona comercial', tipo: 'checkbox', opciones: ['Sí', 'No'] }
-    ],
-    locales: [
-      { nombre: 'Tamaño mínimo (m²)', tipo: 'number' },
-      { nombre: 'Tamaño máximo (m²)', tipo: 'number' },
-      { nombre: 'Tipo_Negocio', tipo: 'checkbox', opciones: ['Tienda', 'Restaurante'] }
-    ]
-  };
 
 
   constructor(
@@ -95,6 +62,19 @@ export class PropiedadesComponent {
 
   }
 
+// Método para actualizar el filtro de habitaciones
+actualizarHabitaciones(opcion: number): void {
+  this.habitaciones = opcion; // Asignar el valor numérico directamente
+  this.actualizarFiltros(); // Ejecutar la consulta
+}
+
+// Método para actualizar el filtro de baños
+actualizarBanos(opcion: number): void {
+  this.banos = opcion; // Asignar el valor numérico directamente
+  this.actualizarFiltros(); // Ejecutar la consulta
+
+}
+
   ngOnInit(): void {
     const filtrosJSON = localStorage.getItem('selectedOptions');
     if (filtrosJSON) {
@@ -108,45 +88,49 @@ export class PropiedadesComponent {
         }
       }
     }
-    this.cargarFiltros();
     this.cargarPropiedades();
   }
 
   actualizarFiltros(): void {
-    // Llamar a cargarPropiedades para ejecutar la consulta con los nuevos filtros
+
+    // Verificar si los filtros están correctamente actualizados
+    console.log("Filtros actualizados:", {
+      tipo: this.tipo_preferencia,
+      provincia: this.provincia,
+      localidad: this.localidad,
+      tipo_propiedad: this.tipo_propiedad,
+      precioMin: this.precioMin,
+      precioMax: this.precioMax,
+      tamanoMin: this.tamanoMin,
+      tamanoMax: this.tamanoMax,
+      habitaciones: this.habitaciones,
+      banos: this.banos,
+      extras: this.extras,
+      planta: this.planta,
+      zona_comercial: this.zona_comercial,
+      tipo_negocio: this.tipo_negocio,
+      zona_transitada: this.zona_transitada
+    });
+
+    // Emitir el cambio de filtros para ejecutar la carga de propiedades
     this.filtrosChanged.next();
+    this.cargarCasas2();
+  }
+
+  buscarPropiedades(): void {
+    this.actualizarFiltros(); // Update filters and trigger the property loading
   }
 
   // Método para cargar las propiedades según los filtros seleccionados
   cargarPropiedades(): void {
     if (this.tipo_propiedad === 'casas') {
-      this.cargarCasas();
+      this.cargarCasas2();
     } else if (this.tipo_propiedad === 'pisos') {
-      this.cargarPisos();
+      this.cargarPisos2();
     } else if (this.tipo_propiedad === 'locales') {
-      this.cargarLocales();
+      this.cargarLocales2();
     } else if (this.tipo_propiedad === 'oficinas') {
-      this.cargarOficinas();
-    }
-  }
-
-  cargarFiltros(): void {
-    switch (this.tipo_propiedad) {
-      case 'casas':
-        this.filtrosSeleccionados = this.filtrosDisponibles.casas;
-        break;
-      case 'pisos':
-        this.filtrosSeleccionados = this.filtrosDisponibles.pisos;
-        break;
-      case 'locales':
-        this.filtrosSeleccionados = this.filtrosDisponibles.locales;
-        break;
-      case 'oficinas':
-        this.filtrosSeleccionados = this.filtrosDisponibles.oficinas;
-        break;
-      default:
-        this.filtrosSeleccionados = [];
-        break;
+      this.cargarOficinas2();
     }
   }
 
@@ -201,6 +185,7 @@ export class PropiedadesComponent {
     ).subscribe(
       (data) => {
         this.propiedades = data;
+        console.log(this.propiedades);
       },
       (error) => {
         this.error = 'Hubo un error al obtener las casas.';
@@ -208,6 +193,176 @@ export class PropiedadesComponent {
       }
     );
   }
+
+
+  cargarPisos2(): void {
+    // Crear un objeto con los parámetros que tienen valores definidos
+    const params: any = {
+      tipo: this.tipo_preferencia,
+      provincia: this.provincia,
+      localidad: this.localidad,
+    };
+
+    // Añadir parámetros solo si tienen valores definidos
+    if (this.precioMin !== undefined && this.precioMin !== null) {
+      params.precioMin = this.precioMin;
+    }
+    if (this.precioMax !== undefined && this.precioMax !== null) {
+      params.precioMax = this.precioMax;
+    }
+    if (this.habitaciones !== undefined && this.habitaciones !== null) {
+      params.n_habitaciones = this.habitaciones;
+    }
+    if (this.banos !== undefined && this.banos !== null) {
+      params.n_banios = this.banos;
+    }
+    if (this.planta !== undefined && this.planta !== null) {
+      params.planta = this.planta;
+    }
+    if (this.tamanoMin !== undefined && this.tamanoMin !== null) {
+      params.tamanio_min = this.tamanoMin;
+    }
+    if (this.tamanoMax !== undefined && this.tamanoMax !== null) {
+      params.tamanio_max = this.tamanoMax;
+    }
+
+    // Llamar al servicio con los parámetros filtrados
+    this.pisosService.obtenerPisos2(
+      this.tipo_preferencia,  // tipo
+      this.provincia,         // provincia
+      this.localidad,         // localidad
+      this.precioMin ?? null, // precio_min
+      this.precioMax ?? null, // precio_max
+      this.habitaciones ?? null, // n_habitaciones
+      this.banos ?? null,        // n_banios
+      this.planta ?? null,        // planta
+      this.tamanoMin ?? null,       // tamanio_min (convert undefined to null)
+      this.tamanoMax ?? null
+    ).subscribe(
+      (data) => {
+        this.propiedades = data;
+        console.log(data);
+      },
+      (error) => {
+        this.error = 'Hubo un error al obtener los pisos.';
+        console.error(error);
+      }
+    );
+
+    console.log(params);
+  }
+
+  cargarOficinas2(): void {
+    // Crear un objeto con los parámetros que tienen valores definidos
+    const params: any = {
+      tipo: this.tipo_preferencia,
+      provincia: this.provincia,
+      localidad: this.localidad,
+    };
+
+    // Añadir parámetros solo si tienen valores definidos
+    if (this.precioMin !== undefined && this.precioMin !== null) {
+      params.precioMin = this.precioMin;
+    }
+    if (this.precioMax !== undefined && this.precioMax !== null) {
+      params.precioMax = this.precioMax;
+    }
+    if (this.n_salas !== undefined && this.n_salas !== null) {
+      params.n_salas = this.n_salas;
+    }
+    if (this.planta !== undefined && this.planta !== null) {
+      params.planta = this.planta;
+    }
+    if (this.zona_comercial !== undefined && this.zona_comercial !== null) {
+      params.zona_comercial = this.zona_comercial;
+    }
+    if (this.tamanoMin !== undefined && this.tamanoMin !== null) {
+      params.tamanio_min = this.tamanoMin;
+    }
+    if (this.tamanoMax !== undefined && this.tamanoMax !== null) {
+      params.tamanio_max = this.tamanoMax;
+    }
+
+    // Llamar al servicio con los parámetros filtrados
+    this.oficinasService.obtenerOficinas2(
+      this.tipo_preferencia,    // tipo
+      this.provincia,           // provincia
+      this.localidad,           // localidad
+      this.precioMin ?? null,   // precio_min
+      this.precioMax ?? null,   // precio_max
+      this.n_salas ?? null,     // n_salas
+      this.planta ?? null,      // planta
+      this.zona_comercial ?? null, // zona_comercial
+      this.tamanoMin ?? null,       // tamanio_min (convert undefined to null)
+      this.tamanoMax ?? null
+    ).subscribe(
+      (data) => {
+        this.propiedades = data;
+        console.log(data);
+      },
+      (error) => {
+        this.error = 'Hubo un error al obtener las oficinas.';
+        console.error(error);
+      }
+    );
+
+    console.log(params);
+  }
+
+  cargarLocales2(): void {
+    // Crear un objeto con los parámetros que tienen valores definidos
+    const params: any = {
+      tipo: this.tipo_preferencia,
+      provincia: this.provincia,
+      localidad: this.localidad,
+    };
+
+    // Añadir parámetros solo si tienen valores definidos
+    if (this.precioMin !== undefined && this.precioMin !== null) {
+      params.precioMin = this.precioMin;
+    }
+    if (this.precioMax !== undefined && this.precioMax !== null) {
+      params.precioMax = this.precioMax;
+    }
+    if (this.zona_transitada !== undefined && this.zona_transitada !== null) {
+      params.zona_transitada = this.zona_transitada;
+    }
+    if (this.tipo_negocio !== undefined && this.tipo_negocio !== null) {
+      params.tipo_negocio = this.tipo_negocio;
+    }
+    if (this.tamanoMin !== undefined && this.tamanoMin !== null) {
+      params.tamanio_min = this.tamanoMin;
+    }
+    if (this.tamanoMax !== undefined && this.tamanoMax !== null) {
+      params.tamanio_max = this.tamanoMax;
+    }
+
+
+    // Llamar al servicio con los parámetros filtrados
+    this.localesService.obtenerLocales2(
+      this.tipo_preferencia,    // tipo
+      this.provincia,           // provincia
+      this.localidad,           // localidad
+      this.precioMin ?? null,   // precio_min
+      this.precioMax ?? null,   // precio_max
+      this.zona_transitada ?? null, // zona_transitada
+      this.tipo_negocio ?? undefined, // tipo_negocio
+      this.tamanoMin ?? null,       // tamanio_min (convert undefined to null)
+      this.tamanoMax ?? null
+    ).subscribe(
+      (data) => {
+        this.propiedades = data;
+        console.log(data);
+      },
+      (error) => {
+        this.error = 'Hubo un error al obtener los locales comerciales.';
+        console.error(error);
+      }
+    );
+
+    console.log(params);
+  }
+
 
   // Método para cargar las casas filtradas
   cargarCasas(): void {
