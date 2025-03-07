@@ -79,7 +79,13 @@ export class CasasService {
       params = params.set('tamanio_max', tamanio_max.toString());
     }
 
+    console.log(params);
+        const url = `http://localhost/idealista/PHP/controller/CasasController.php?${params.toString()}`;
+    console.log('URL final:', url);
+
     return this.http.get<any[]>(this.apiUrl, { params });
+
+
   }
 
   // Agregar una nueva casa

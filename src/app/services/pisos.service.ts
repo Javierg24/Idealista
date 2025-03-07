@@ -74,6 +74,10 @@ export class PisosService {
       params = params.set('tamanio_max', tamanio_max.toString());
     }
 
+    console.log(params);
+        const url = `http://localhost/idealista/PHP/controller/PisosController.php?${params.toString()}`;
+    console.log('URL final:', url);
+
 
     return this.http.get<Piso[]>(this.apiUrl, { params });
   }
