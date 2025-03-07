@@ -114,15 +114,32 @@ actualizarBanos(opcion: number): void {
 
     // Emitir el cambio de filtros para ejecutar la carga de propiedades
     this.filtrosChanged.next();
-    this.cargarCasas2();
   }
-
   buscarPropiedades(): void {
-    this.actualizarFiltros(); // Update filters and trigger the property loading
+    this.actualizarFiltros(); // Primero, actualiza los filtros
+    setTimeout(() => {
+      this.cargarPropiedades(); // Luego, espera un momento y carga las propiedades
+    }, 50);
   }
 
   // Método para cargar las propiedades según los filtros seleccionados
   cargarPropiedades(): void {
+    console.log("Cargando propiedades con los siguientes filtros:", {
+      tipo_propiedad: this.tipo_propiedad,
+      tipo_preferencia: this.tipo_preferencia,
+      provincia: this.provincia,
+      localidad: this.localidad,
+      precioMin: this.precioMin,
+      precioMax: this.precioMax,
+      habitaciones: this.habitaciones,
+      banos: this.banos,
+      extras: this.extras,
+      planta: this.planta,
+      zona_comercial: this.zona_comercial,
+      tipo_negocio: this.tipo_negocio,
+      zona_transitada: this.zona_transitada
+    });
+
     if (this.tipo_propiedad === 'casas') {
       this.cargarCasas2();
     } else if (this.tipo_propiedad === 'pisos') {
@@ -135,12 +152,21 @@ actualizarBanos(opcion: number): void {
   }
 
 
+
   cargarCasas2(): void {
     // Crear un objeto con los parámetros que tienen valores definidos
     const params: any = {
       tipo: this.tipo_preferencia,
       provincia: this.provincia,
       localidad: this.localidad,
+      precio_min: this.precioMin ?? null,
+      precio_max: this.precioMax ?? null,
+      n_habitaciones: this.habitaciones ?? null,
+      n_banios: this.banos ?? null,
+      jardin: this.extras.jardin ?? null,
+      piscina: this.extras.piscina ?? null,
+      tamanio_min: this.tamanoMin ?? null,
+      tamanio_max: this.tamanoMax ?? null,
     };
 
     // Añadir parámetros solo si tienen valores definidos
