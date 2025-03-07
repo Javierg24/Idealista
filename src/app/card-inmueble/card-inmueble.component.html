@@ -1,5 +1,5 @@
 <div class="card-inmueble">
-  <img [src]="datos.imagen" [alt]="datos.titulo">
+  <img [src]="this.rutaImagen" [alt]="datos.titulo">
   <div class="info">
     <a routerLink="/propiedad">{{ datos.titulo }}</a>
     <p class="precio"><strong> {{ datos.precio | currency:'EUR' }}</strong></p>
