@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CasasService } from '../services/casas.service';  // Asegúrate de importar los servicios correctos
 import { PisosService } from '../services/pisos.service'; // Asegúrate de importar los servicios correctos
 import { LocalesComercialesService } from '../services/locales-comerciales.service'; // Asegúrate de importar los servicios correctos
 import { OficinasService } from '../services/oficinas.service'; // Asegúrate d
 import { Router } from '@angular/router';
+import { ImagenesService } from '../services/imagenes.service';
 
 @Component({
   selector: 'app-propiedad',
@@ -16,13 +17,15 @@ export class PropiedadComponent {
   inmueble: any;
   id: number = 0;
   error: string = '';
+  rutaImagen: string = 'http://localhost/idealista/IMAGES/noFoto.jpg';
 
   constructor(
     private route: Router,
     private casasService: CasasService,
     private pisosService: PisosService,
     private localesService: LocalesComercialesService,
-    private oficinasService: OficinasService
+    private oficinasService: OficinasService,
+    private imagesService: ImagenesService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +38,19 @@ export class PropiedadComponent {
       }
     }
     this.cargarPropiedades();
+    this.getImagen(this.id);
+  }
+
+  getImagen(idPropiedad: number) {
+    this.imagesService.obtenerImagenesDePropiedad(idPropiedad).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.rutaImagen = data[0].url_imagen;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   // Método para cargar las propiedades según los filtros seleccionados
