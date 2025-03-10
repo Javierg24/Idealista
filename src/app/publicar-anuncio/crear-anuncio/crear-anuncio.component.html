@@ -5,13 +5,36 @@
     </div>
   </div>
 </div>
+
 <div class="crear-anuncio">
-  <h2>Publicar un anuncio</h2>
+  <h2>Poner tu anuncio de particular</h2>
+
+  <!-- Sección de información útil -->
+  <div class="info-util">
+    <h3>Información útil</h3>
+    <p> Ten las fotos listas. Sin fotos, tu anuncio tendrá menos impacto.</p>
+    <p> Los dos primeros anuncios son gratis. Publica pisos, chalets, locales y más.</p>
+    <p> Publica hasta 5 habitaciones gratis en piso compartido.</p>
+    <p> Se cobrarán tarifas para ciertos tipos de anuncios.</p>
+    
+    <ul>
+      <li>Anunciantes con más de dos inmuebles</li>
+      <li>Anuncios duplicados</li>
+      <li>Inmuebles en venta de más de 1.000.000 €</li>
+      <li>Inmuebles en alquiler de más de 2.500 €/mes</li>
+    </ul>
+
+    <div class="info-links">
+      <p>⚡ <a href="#">Encuentra la agencia inmobiliaria adecuada</a></p>
+      <p>🏢 <a href="#">Conoce nuestras ventajas para profesionales</a></p>
+    </div>
+  </div>
+
   <form [formGroup]="anuncioForm" (ngSubmit)="onSubmit()">
     
-    <!-- Selector de tipo de propiedad -->
+    <!-- Tipo de propiedad -->
     <div class="form-group">
-      <label>Tipo de propiedad</label>
+      <label>Elige el tipo de inmueble</label>
       <select formControlName="tipo">
         <option value="casa">Casa</option>
         <option value="piso">Piso</option>
@@ -20,17 +43,19 @@
       </select>
     </div>
 
-    <!-- Tipo de operación -->
+    <!-- Tipo de operación (Radio Buttons) -->
     <div class="form-group">
-      <label>Tipo de operación</label>
-      <select formControlName="tipoOperacion">
-        <option *ngFor="let tipo of tipoOpciones" [value]="tipo">{{ tipo }}</option>
-      </select>
+      <label>Operación</label>
+      <div class="radio-group">
+        <label *ngFor="let tipo of tipoOpciones">
+          <input type="radio" formControlName="tipoOperacion" [value]="tipo" /> {{ tipo }}
+        </label>
+      </div>
     </div>
 
     <!-- Campos generales -->
     <div class="form-group">
-      <label>Título</label>
+      <label>Título del anuncio</label>
       <input type="text" formControlName="titulo" required />
     </div>
 
@@ -47,14 +72,18 @@
     <div class="form-group">
       <label>Provincia</label>
       <select formControlName="id_provincia">
-        <option *ngFor="let provincia of provincias$ | async" [value]="provincia.id_provincia">{{ provincia.nombre }}</option>
+        <option *ngFor="let provincia of provincias$ | async" [value]="provincia.id_provincia">
+          {{ provincia.nombre }}
+        </option>
       </select>
     </div>
 
     <div class="form-group">
       <label>Localidad</label>
       <select formControlName="id_localidad">
-        <option *ngFor="let localidad of localidades$ | async" [value]="localidad.id_localidad">{{ localidad.nombre }}</option>
+        <option *ngFor="let localidad of localidades$ | async" [value]="localidad.id_localidad">
+          {{ localidad.nombre }}
+        </option>
       </select>
     </div>
 
@@ -92,5 +121,10 @@
     <button type="submit" class="btn-primary" [disabled]="anuncioForm.invalid || loading">
       {{ loading ? 'Publicando...' : 'Publicar Anuncio' }}
     </button>
+
+    <div class="mensaje-exito" *ngIf="mensajeExito">
+      {{ mensajeExito }}
+    </div>
+    
   </form>
 </div>

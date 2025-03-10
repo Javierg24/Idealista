@@ -94,14 +94,32 @@ export class PisosService {
     return this.propiedadesService.agregarPropiedad(piso).pipe(
       switchMap((response) => {
         if (response.success && response.id_propiedad) {
-          const nuevoPiso: Piso = { ...piso, id_propiedad: response.id_propiedad };
-          return this.http.post<any>(this.apiUrl, nuevoPiso);
+          const idPropiedad = Number(response.id_propiedad);
+          const nuevoPiso: Piso = { ...piso, id_propiedad: idPropiedad };
+  
+          return this.http.post<any>(this.apiUrl, nuevoPiso).pipe(
+            switchMap((pisoResponse) => {
+              if (pisoResponse.success) {
+                return new Observable((observer) => {
+                  observer.next({
+                    success: true,
+                    id_propiedad: idPropiedad,
+                    ...pisoResponse
+                  });
+                  observer.complete();
+                });
+              } else {
+                return throwError(() => new Error("Error al registrar el piso"));
+              }
+            })
+          );
         } else {
           return throwError(() => new Error("Error al insertar la propiedad"));
         }
       })
     );
   }
+  
   // Actualizar un piso existente
   actualizarPiso(piso: Piso): Observable<any> {
     return this.http.put<any>(this.apiUrl, piso);

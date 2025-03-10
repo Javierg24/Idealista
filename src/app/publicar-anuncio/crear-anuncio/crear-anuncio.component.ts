@@ -22,6 +22,7 @@ export class CrearAnuncioComponent implements OnInit {
   tipoPropiedad = 'casa'; // Valor por defecto
   loading = false;
   usuarioAutenticado: any = null;
+  mensajeExito: string = '';
 
   provincias$: Observable<Provincia[]> = new Observable();
   localidades$: Observable<Localidad[]> = new Observable();
@@ -67,21 +68,21 @@ export class CrearAnuncioComponent implements OnInit {
     this.anuncioForm.get('id_provincia')?.valueChanges.subscribe((provinciaId) => {
       if (provinciaId) {
         this.localidades$ = this.localidadesService.obtenerLocalidadesPorProvincia(provinciaId);
-      }  
-      });
+      }
+    });
   }
 
   ngOnInit() {
     // Obtener usuario autenticado desde localStorage
     const usuarioStorage = localStorage.getItem('usuario');
-  
+
     if (usuarioStorage) {
       const usuarios = JSON.parse(usuarioStorage); // Parsea el JSON
       this.usuarioAutenticado = Array.isArray(usuarios) ? usuarios[0] : usuarios; // Tomar el primer usuario si es un array
-  
+
       console.log("Usuario autenticado:", this.usuarioAutenticado);
       console.log("ID Usuario:", this.usuarioAutenticado?.id_usuario);
-  
+
       if (this.usuarioAutenticado?.id_usuario) {
         this.anuncioForm.patchValue({ id_usuario: this.usuarioAutenticado.id_usuario });
       } else {
@@ -92,53 +93,64 @@ export class CrearAnuncioComponent implements OnInit {
       console.warn("No se encontró usuario autenticado, redirigiendo a login.");
       this.router.navigate(['/login']);
     }
-  
+
     // Cargar provincias
     this.provincias$ = this.provinciasService.obtenerTodasLasProvincias();
   }
-  
+
+
 
   onSubmit() {
     if (this.anuncioForm.valid) {
       this.loading = true;
 
-      const formData = { 
+      const formData = {
         ...this.anuncioForm.value,
-         id_usuario: this.usuarioAutenticado?.id_usuario,
-         tipo: this.anuncioForm.value.tipoOperacion
-        };
+        id_usuario: this.usuarioAutenticado?.id_usuario,
+        tipo: this.anuncioForm.value.tipoOperacion
+      };
 
       console.log("Datos enviados al backend:", formData);
 
+      let servicio;
       switch (this.tipoPropiedad) {
         case 'casa':
-          const casa: Casa = { ...formData };
-          this.casasService.agregarCasa(casa).subscribe(() => {
-            this.router.navigate(['/']);
-          });
+          servicio = this.casasService.agregarCasa(formData);
           break;
-
         case 'piso':
-          const piso: Piso = { ...formData };
-          this.pisosService.agregarPiso(piso).subscribe(() => {
-            this.router.navigate(['/']);
-          });
+          servicio = this.pisosService.agregarPiso(formData);
           break;
-
         case 'oficina':
-          const oficina: Oficina = { ...formData };
-          this.oficinasService.agregarOficina(oficina).subscribe(() => {
-            this.router.navigate(['/']);
-          });
+          servicio = this.oficinasService.agregarOficina(formData);
           break;
-
         case 'local':
-          const local: LocalComercial = { ...formData };
-          this.localesService.agregarLocal(local).subscribe(() => {
-            this.router.navigate(['/']);
-          });
+          servicio = this.localesService.agregarLocal(formData);
           break;
       }
+
+      servicio?.subscribe((response) => {
+        if (response.success) {
+          const idPropiedad = Number(response.id_propiedad);
+          console.log("✅ Propiedad creada con ID:", idPropiedad);
+
+          this.mensajeExito = '✅ Propiedad creada con éxito.';
+          localStorage.setItem('selectedProperty', JSON.stringify({
+            id: idPropiedad,
+            tipo_propiedad: this.tipoPropiedad
+          }));
+
+          setTimeout(() => {
+            this.router.navigate(['/propiedad']);
+          }, 2000);
+        } else {
+          alert('❌ Error al crear la propiedad.');
+        }
+        this.loading = false;
+      }, (error) => {
+        console.error('Error en la creación de la propiedad:', error);
+        alert('❌ Error al crear la propiedad en la respuesta.');
+        this.loading = false;
+      });
     }
   }
 }

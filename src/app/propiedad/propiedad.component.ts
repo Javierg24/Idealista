@@ -14,7 +14,7 @@ import { ImagenesService } from '../services/imagenes.service';
 export class PropiedadComponent {
   filtros: any;
   tipo_propiedad: string = '';
-  inmueble: any;
+  inmueble: any = null;
   id: number = 0;
   error: string = '';
   rutaImagen: string = 'http://localhost/idealista/IMAGES/noFoto.jpg';

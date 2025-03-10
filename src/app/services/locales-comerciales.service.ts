@@ -80,19 +80,36 @@ export class LocalesComercialesService {
     return this.http.get<LocalComercial>(`${this.apiUrl}?id=${id}`);
   }
 
-  // Agregar un nuevo local comercial
-  agregarLocal(local: LocalComercial): Observable<any> {
-    return this.propiedadesService.agregarPropiedad(local).pipe(
-      switchMap((response) => {
-        if (response.success && response.id_propiedad) {
-          const nuevoLocal: LocalComercial = { ...local, id_propiedad: response.id_propiedad };
-          return this.http.post<any>(this.apiUrl, nuevoLocal);
-        } else {
-          return throwError(() => new Error("Error al insertar la propiedad"));
-        }
-      })
-    );
-  }
+ // Agregar un nuevo local comercial
+ agregarLocal(local: LocalComercial): Observable<any> {
+  return this.propiedadesService.agregarPropiedad(local).pipe(
+    switchMap((response) => {
+      if (response.success && response.id_propiedad) {
+        const idPropiedad = Number(response.id_propiedad);
+        const nuevoLocal: LocalComercial = { ...local, id_propiedad: idPropiedad };
+
+        return this.http.post<any>(this.apiUrl, nuevoLocal).pipe(
+          switchMap((localResponse) => {
+            if (localResponse.success) {
+              return new Observable((observer) => {
+                observer.next({
+                  success: true,
+                  id_propiedad: idPropiedad,
+                  ...localResponse
+                });
+                observer.complete();
+              });
+            } else {
+              return throwError(() => new Error("Error al registrar el local"));
+            }
+          })
+        );
+      } else {
+        return throwError(() => new Error("Error al insertar la propiedad"));
+      }
+    })
+  );
+}
 
 
   // Actualizar un local comercial existente

@@ -1,6 +1,5 @@
-
 .header {
-  background-color: #e1f56e
+  background-color: #e1f56e;
 }
 
 .header .container-menu {
@@ -10,36 +9,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  height: 60px
+  height: 60px;
 }
 
 .header .container-menu .logo {
   display: flex;
   align-items: center;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .header .container-menu .logo img {
-  height: 35px
-}
-
-.header .container-menu .enlaces {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 20px
-}
-
-.header .container-menu .enlaces .enlace {
-  padding: 1%;
-  color: #333;
-  text-decoration: none;
-  font-size: 16px;
-  transition: background-color 0.3s
-}
-
-.header .container-menu .enlaces .enlace:hover {
-  background-color: #cfe500
+  height: 35px;
 }
 
 
@@ -50,10 +30,48 @@
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .info-util {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    p, ul {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .info-links {
+      margin-top: 10px;
+
+      a {
+        color: #b40081;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .form-group {
@@ -75,18 +93,51 @@
     }
   }
 
+  .radio-group {
+    display: flex;
+    gap: 15px;
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    input {
+      margin-right: 5px;
+    }
+  }
+
   .btn-primary {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background: #b40081;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: #92006b;
   }
 
   .btn-primary:disabled {
     background: #ccc;
+    cursor: not-allowed;
   }
 }
+.mensaje-exito {
+  background: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+

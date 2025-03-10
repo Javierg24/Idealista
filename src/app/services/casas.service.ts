@@ -88,20 +88,37 @@ export class CasasService {
 
   }
 
-  // Agregar una nueva casa
   agregarCasa(casa: Casa): Observable<any> {
     return this.propiedadesService.agregarPropiedad(casa).pipe(
       switchMap((response) => {
         if (response.success && response.id_propiedad) {
-          const nuevaCasa: Casa = { ...casa, id_propiedad: response.id_propiedad };
-          return this.http.post<any>(this.apiUrl, nuevaCasa);
+          const idPropiedad = Number(response.id_propiedad);
+          const nuevaCasa: Casa = { ...casa, id_propiedad: idPropiedad };
+  
+          return this.http.post<any>(this.apiUrl, nuevaCasa).pipe(
+            switchMap((casaResponse) => {
+              if (casaResponse.success) {
+                // En lugar de hacer un GET, devolvemos la respuesta del POST
+                return new Observable((observer) => {
+                  observer.next({
+                    success: true,
+                    id_propiedad: idPropiedad,
+                    ...casaResponse // Agregamos toda la respuesta
+                  });
+                  observer.complete();
+                });
+              } else {
+                return throwError(() => new Error("Error al registrar la casa"));
+              }
+            })
+          );
         } else {
           return throwError(() => new Error("Error al insertar la propiedad"));
         }
       })
     );
   }
-
+  
 
   // Actualizar una casa existente
   actualizarCasa(casa: Casa): Observable<any> {

@@ -85,19 +85,37 @@ export class OficinasService {
     return this.http.get<Oficina>(`${this.apiUrl}?id_oficina=${id}`);
   }
 
-  // Agregar una nueva oficina
-  agregarOficina(oficina: Oficina): Observable<any> {
-    return this.propiedadesService.agregarPropiedad(oficina).pipe(
-      switchMap((response) => {
-        if (response.success && response.id_propiedad) {
-          const nuevaOficina: Oficina = { ...oficina, id_propiedad: response.id_propiedad };
-          return this.http.post<any>(this.apiUrl, nuevaOficina);
-        } else {
-          return throwError(() => new Error("Error al insertar la propiedad"));
-        }
-      })
-    );
-  }
+ // Agregar una nueva oficina
+ agregarOficina(oficina: Oficina): Observable<any> {
+  return this.propiedadesService.agregarPropiedad(oficina).pipe(
+    switchMap((response) => {
+      if (response.success && response.id_propiedad) {
+        const idPropiedad = Number(response.id_propiedad);
+        const nuevaOficina: Oficina = { ...oficina, id_propiedad: idPropiedad };
+
+        return this.http.post<any>(this.apiUrl, nuevaOficina).pipe(
+          switchMap((oficinaResponse) => {
+            if (oficinaResponse.success) {
+              return new Observable((observer) => {
+                observer.next({
+                  success: true,
+                  id_propiedad: idPropiedad,
+                  ...oficinaResponse
+                });
+                observer.complete();
+              });
+            } else {
+              return throwError(() => new Error("Error al registrar la oficina"));
+            }
+          })
+        );
+      } else {
+        return throwError(() => new Error("Error al insertar la propiedad"));
+      }
+    })
+  );
+}
+
 
   // Actualizar una oficina existente
   actualizarOficina(oficina: Oficina): Observable<any> {
