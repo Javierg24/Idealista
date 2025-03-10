@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CasasService, Casa } from 'src/app/services/casas.service';
@@ -46,7 +47,7 @@ export class CrearAnuncioComponent implements OnInit {
       id_localidad: ['', Validators.required],
       tamanio: ['', [Validators.required, Validators.min(1)]],
       ubicacion: ['', Validators.required], // Nueva propiedad para ubicación
-      id_usuario: [''], // Se asigna en `ngOnInit`
+      id_usuario: [''], // Se asigna en ngOnInit
 
       // Campos específicos por tipo de propiedad
       n_habitaciones: [''],
